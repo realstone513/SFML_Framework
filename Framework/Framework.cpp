@@ -1,6 +1,7 @@
 #include "Framework.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
+#include "SoundManager.h"
 #include "../3rd/SingleTon.h"
 #include "../Scenes/SceneMgr.h"
 #include "../DataTable/DataTableMGR.h"
@@ -30,6 +31,7 @@ bool Framework::Init()
     InputManager::Init();
   
     RESOURCES_MGR->LoadAll();
+    SOUND_MGR->Init();
     SCENE_MGR->Init();
     DATATABLE_MGR->Init();
     
@@ -52,6 +54,7 @@ bool Framework::Do()
         }
 
         window.clear();
+        SOUND_MGR->Update();
         SCENE_MGR->Update(dt);
         SCENE_MGR->Draw(window);
         window.display();

@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "../Framework/InputManager.h"
 #include "../Framework/ResourceManager.h"
+#include "../Framework/SoundManager.h"
 #include "../GameObject/SpriteObject.h"
 #include "../GameObject/TextObject.h"
 
@@ -24,10 +25,12 @@ SceneDev2::~SceneDev2()
 
 void SceneDev2::Enter()
 {
+    SOUND_MGR->Play("sounds/Cunningcity.ogg");
 }
 
 void SceneDev2::Exit()
 {
+    SOUND_MGR->StopAll();
 }
 
 void SceneDev2::Update(float dt)

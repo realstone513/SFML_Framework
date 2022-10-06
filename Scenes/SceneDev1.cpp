@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "../Framework/InputManager.h"
 #include "../Framework/ResourceManager.h"
+#include "../Framework/SoundManager.h"
 #include "../GameObject/SpriteObject.h"
 #include "../GameObject/TextObject.h"
 
@@ -24,10 +25,12 @@ SceneDev1::~SceneDev1()
 
 void SceneDev1::Enter()
 {
+    SOUND_MGR->Play("sounds/Hennesis.ogg");
 }
 
 void SceneDev1::Exit()
 {
+    SOUND_MGR->StopAll();
 }
 
 void SceneDev1::Update(float dt)
