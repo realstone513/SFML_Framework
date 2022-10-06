@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="DataTable\DataTable.h">
+      <Filter>DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable\DataTableMGR.h">
+      <Filter>DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Framework.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\InputManager.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable\StringTable.h">
+      <Filter>DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Utils.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ResourceManager.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\SingleTon.h">
+      <Filter>3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="3rd\rapidcsv.h">
+      <Filter>3rd</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Scene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneDev1.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneDev2.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SceneMgr.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Object.h" />
+    <ClInclude Include="GameObject\SpriteObject.h" />
+    <ClInclude Include="GameObject\TextObject.h" />
+    <ClInclude Include="Framework\SoundManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DataTable\DataTable.cpp">
+      <Filter>DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTable\DataTableMGR.cpp">
+      <Filter>DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTable\StringTable.cpp">
+      <Filter>DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Utils.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ResourceManager.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\InputManager.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Framework.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\SceneDev1.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\SceneDev2.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\SceneMgr.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GameObject\Object.cpp" />
+    <ClCompile Include="GameObject\SpriteObject.cpp" />
+    <ClCompile Include="GameObject\TextObject.cpp" />
+    <ClCompile Include="Framework\SoundManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="DataTable">
+      <UniqueIdentifier>{e6c2f8b2-5344-49c1-91f3-3ec50ad99541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{9af66f21-85f3-4ded-a0a8-5443fcb65d51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Frameworks">
+      <UniqueIdentifier>{612e23f2-6159-4547-9909-3f129904672f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rd">
+      <UniqueIdentifier>{26316097-a026-463e-bd2a-91197fc49f40}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
