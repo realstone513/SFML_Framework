@@ -4,7 +4,7 @@
     <ClInclude Include="DataTable\DataTable.h">
       <Filter>DataTable</Filter>
     </ClInclude>
-    <ClInclude Include="DataTable\DataTableMGR.h">
+    <ClInclude Include="DataTable\DataTableManager.h">
       <Filter>DataTable</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Framework.h">
@@ -40,16 +40,27 @@
     <ClInclude Include="Scenes\SceneMgr.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject\Object.h" />
-    <ClInclude Include="GameObject\SpriteObject.h" />
-    <ClInclude Include="GameObject\TextObject.h" />
-    <ClInclude Include="Framework\SoundManager.h" />
+    <ClInclude Include="GameObject\TextObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Object.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\SpriteObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SoundManager.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Player.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataTable\DataTable.cpp">
       <Filter>DataTable</Filter>
     </ClCompile>
-    <ClCompile Include="DataTable\DataTableMGR.cpp">
+    <ClCompile Include="DataTable\DataTableManager.cpp">
       <Filter>DataTable</Filter>
     </ClCompile>
     <ClCompile Include="DataTable\StringTable.cpp">
@@ -80,10 +91,21 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="GameObject\Object.cpp" />
-    <ClCompile Include="GameObject\SpriteObject.cpp" />
-    <ClCompile Include="GameObject\TextObject.cpp" />
-    <ClCompile Include="Framework\SoundManager.cpp" />
+    <ClCompile Include="GameObject\Object.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\SpriteObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\TextObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SoundManager.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Player.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="DataTable">
@@ -97,6 +119,9 @@
     </Filter>
     <Filter Include="3rd">
       <UniqueIdentifier>{26316097-a026-463e-bd2a-91197fc49f40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{e0c6f671-82c5-4272-8ee2-eaf24843cb3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
