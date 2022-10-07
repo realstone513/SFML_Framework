@@ -26,8 +26,8 @@ void Player::Update(float dt)
 {
 	SpriteObject::Update(dt);
 
-	direction.x = InputManager::GetAxisRaw(Axis::Horizontal);
-	direction.y = InputManager::GetAxisRaw(Axis::Vertical);
+	direction.x = InputManager::GetAxis(Axis::Horizontal);
+	direction.y = InputManager::GetAxis(Axis::Vertical);
 	direction = Utils::Normalize(direction);
 
 	Translate(direction * speed * dt);

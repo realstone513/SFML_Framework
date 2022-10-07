@@ -16,8 +16,8 @@ void InputManager::Init()
     infoH.positives.push_back(Keyboard::Key::Right);
     infoH.negatives.push_back(Keyboard::Key::A);
     infoH.negatives.push_back(Keyboard::Key::Left);
-    infoH.sensi = 0.f;
-    infoH.value = 1.f;
+    infoH.sensi = 5.f;
+    infoH.value = 0.f;
     
     axisInfoMap.insert({ infoH.axis, infoH });
 
@@ -28,8 +28,8 @@ void InputManager::Init()
     infoV.positives.push_back(Keyboard::Key::Down);
     infoV.negatives.push_back(Keyboard::Key::W);
     infoV.negatives.push_back(Keyboard::Key::Up);
-    infoV.sensi = 0.f;
-    infoV.value = 1.f;
+    infoV.sensi = 5.f;
+    infoV.value = 0.f;
 
     axisInfoMap.insert({ infoV.axis, infoV });
 
@@ -46,9 +46,18 @@ void InputManager::Update(float dt)
         float raw = GetAxisRaw(axis.axis);
         if (raw == 0.f)
         {
-            raw = axis.value > 0.f ? 1.f : 0.f;
+            raw = axis.value > 0.f ? -1.f : 1.f;
         }
         axis.value += raw * axis.sensi * dt;
+        
+        if (axis.value > 1.0f)
+            axis.value = 1.f;
+        if (axis.value < -1.0f)
+            axis.value = -1.f;
+        if (abs(axis.value) < 0.00001f)
+            axis.value = 0.f;
+        if (axis.axis == Axis::Horizontal)
+            std::cout << axis.value << std::endl;
     }
 }
 
@@ -107,7 +116,7 @@ float InputManager::GetAxisRaw(Axis axis)
     return 0;
 }
 
-Axis InputManager::GetAxis()
+float InputManager::GetAxis(Axis axis)
 {
-    return Axis();
+    return axisInfoMap[axis].value;
 }

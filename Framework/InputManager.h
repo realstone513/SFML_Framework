@@ -30,6 +30,7 @@ private:
     static vector<bool> downList;
     static vector<bool> ingList;
     static vector<bool> upList;
+
 public:
     static void Init();
     static void Update(float dt);
@@ -40,5 +41,5 @@ public:
     static bool GetKeyUp(Keyboard::Key key);
 
     static float GetAxisRaw(Axis axis);
-    static Axis GetAxis();
+    static float GetAxis(Axis axis);
 };

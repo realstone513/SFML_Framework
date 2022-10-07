@@ -35,6 +35,7 @@ void SceneDev1::Update(float dt)
 	if (InputManager::GetKeyDown(Keyboard::Key::Space))
 		SCENE_MGR->ChangeScene(Scenes::Dev2);
 
+    //cout << InputManager::GetAxis(Axis::Horizontal).value << endl;
     Scene::Update(dt);
 }
 
