@@ -14,7 +14,7 @@ void Scene::Update(float dt)
     {
         if (obj->GetActive())
         {
-            obj->Update();
+            obj->Update(dt);
         }
     }
 
@@ -22,7 +22,7 @@ void Scene::Update(float dt)
     {
         if (obj->GetActive())
         {
-            obj->Update();
+            obj->Update(dt);
         }
     }
 }

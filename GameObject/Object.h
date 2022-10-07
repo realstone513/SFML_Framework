@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../Framework/Utils.h"
 
 using namespace sf;
 using namespace std;
@@ -15,9 +16,13 @@ protected:
     float rotation;
     Vector2f scale;
 
+    static int objCount;
+
 public:
     Object();
     virtual ~Object();
+
+    int GetObjectID();
 
     virtual void SetActive(bool active);
     virtual bool GetActive() const;
@@ -27,6 +32,8 @@ public:
 
     virtual void Init();
     virtual void Release();
-    virtual void Update();
+    virtual void Update(float dt);
     virtual void Draw(RenderWindow& window);
+
+    void Translate(Vector2f delta);
 };

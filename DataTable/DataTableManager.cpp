@@ -1,26 +1,26 @@
-#include "DataTableMgr.h"
+#include "DataTableManager.h"
 #include "StringTable.h"
 
-DataTableMgr::DataTableMgr(const DataTableMgr& ref)
+DataTableManager::DataTableManager(const DataTableManager& ref)
 {
 }
 
-DataTableMgr& DataTableMgr::operator=(const DataTableMgr& ref)
+DataTableManager& DataTableManager::operator=(const DataTableManager& ref)
 {
     return *this;
 }
 
-DataTableMgr::DataTableMgr()
+DataTableManager::DataTableManager()
 {
     Init();
 }
 
-DataTableMgr::~DataTableMgr()
+DataTableManager::~DataTableManager()
 {
     Release();
 }
 
-void DataTableMgr::Init()
+void DataTableManager::Init()
 {
     DataTable* table = new StringTable();
     table->Load();
@@ -29,7 +29,7 @@ void DataTableMgr::Init()
     table->Load();
 }
 
-void DataTableMgr::Release()
+void DataTableManager::Release()
 {
     for (auto pair : tables)
     {

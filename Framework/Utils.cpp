@@ -1,60 +1,53 @@
 #include "Utils.h"
 
 random_device Utils::rd;
-mt19937 Utils::gen(Utils:: rd());
+mt19937 Utils::gen(Utils::rd());
 
 void Utils::SetOrigin(Text& obj, Origins origin)
 {
-	FloatRect rect = obj.getLocalBounds();
-	Vector2f originpos;
-	originpos.x = rect.width * ((int)origin % 3) * 0.5f;
-	originpos.y = rect.height * ((int)origin / 3) * 0.5f;
-	obj.setOrigin(originpos);	
+	SetOrigin(obj, origin, obj.getLocalBounds());
 }
 
 void Utils::SetOrigin(Sprite& obj, Origins origin)
 {
-	FloatRect rect = obj.getLocalBounds();
-	Vector2f originpos;
-	originpos.x = rect.width * ((int)origin % 3) * 0.5f;
-	originpos.y = rect.height * ((int)origin / 3) * 0.5f;
-	obj.setOrigin(originpos);
+	SetOrigin(obj, origin, obj.getLocalBounds());
 }
 
 void Utils::SetOrigin(Shape& obj, Origins origin)
 {
-	FloatRect rect = obj.getLocalBounds();
-	Vector2f originpos;
-	originpos.x = rect.width * ((int)origin % 3) * 0.5f;
-	originpos.y = rect.height * ((int)origin / 3) * 0.5f;
-	obj.setOrigin(originpos);
+	SetOrigin(obj, origin, obj.getLocalBounds());
 }
 
-void Utils::SetOrigin(Transformable& obj, Origins origin)
+void Utils::SetOrigin(Transformable& obj, Origins origin, FloatRect rect)
 {
+	Vector2f originPos(rect.width, rect.height);
+	originPos.x *= ((int)origin % 3) * 0.5f;
+	originPos.y *= ((int)origin / 3) * 0.5f;
+	obj.setOrigin(originPos);
 }
 
-int Utils::Range(int min, int maxExclude)	// 20 40 넣으면 20~39 나옴.
+int Utils::Random(int min, int maxExclude)
 {
-	//0~19 
 	return (gen() % (maxExclude - min)) + min;
 }
 
-float Utils::RandomRange(float min, int max) //얘는 max 포함되게.
+float Utils::Random(float min, int maxInclude)
 {
-	return min + static_cast<float>(rand()) * static_cast<float>(max - min) / RAND_MAX;
+	float div = maxInclude - min + 1.0f;
+	std::uniform_real_distribution<> dist(min, maxInclude);
+	return dist(gen);
 }
 
-float Utils::Magnitude(const Vector2f& vec) //벡터의 길이
+float Utils::Magnitude(const Vector2f& vec)
 {
 	return sqrt(vec.x * vec.x + vec.y * vec.y); 
 }
-float Utils::SqrMagnitude(const Vector2f& vec) //벡터의 길이 제곱 안한거. 크기 비교
+float Utils::SqrMagnitude(const Vector2f& vec)
 {
 	return (vec.x * vec.x + vec.y * vec.y);
 }
 
-Vector2f Utils::Normalize(const Vector2f& vec) //벡터 정규화
+Vector2f Utils::Normalize(const Vector2f& vec)
 {
 	float mag = Magnitude(vec);
 	

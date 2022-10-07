@@ -3,9 +3,8 @@
 
 int main()
 {
-    Framework framwork(1280, 720);
-    framwork.Init();
-    framwork.Do();
+     FRAMEWORK->Init(1280, 720);
+     FRAMEWORK->Do();
 
     return 0;
 }

@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../3rd/SingleTon.h"
 
 using namespace sf;
-// Framework는 새로 만드는 게임마다 상속 받게 됨
-class Framework 
+
+class Framework : public Singleton<Framework>
 {
 protected:
 	RenderWindow window;
@@ -13,12 +14,15 @@ protected:
 	float timeScale;
 
 public:
-	Framework(int width, int height);
+	Framework();
 	virtual ~Framework();
 
 	float GetDT() const;
 	float GetRealDT() const;
+	const Vector2i& GetWindowSize() const;
 
-	bool Init();
+	bool Init(int width, int height);
 	bool Do();
 };
+
+#define FRAMEWORK (Framework::GetInstance())

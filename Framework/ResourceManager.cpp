@@ -3,7 +3,6 @@
 string ResourceManager::filePath("Resources.csv");
 ResourceManager::ResourceManager()
 {
-	//LadAll();
 }
 
 ResourceManager::~ResourceManager()
@@ -91,7 +90,6 @@ bool ResourceManager::Load(ResourcesTypes type, string id)
 	default:
 		break;
 	}
-	//Error 여기다가 찍기
 	return false;
 }
 

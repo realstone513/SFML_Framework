@@ -5,62 +5,70 @@
 vector<bool> InputManager::downList(Keyboard::KeyCount, false);
 vector<bool> InputManager::ingList(Keyboard::KeyCount, false);
 vector<bool> InputManager::upList(Keyboard::KeyCount, false);
-vector<int> InputManager::ingIdx;
 map<Axis, AxisInfo> InputManager::axisInfoMap;
 
 void InputManager::Init()
 { 
     //Horizontal
-  
-    axisInfoMap.insert({ Axis::Horizontal, AxisInfo()});
+    AxisInfo infoH;
+    infoH.axis = Axis::Horizontal;
+    infoH.positives.push_back(Keyboard::Key::D);
+    infoH.positives.push_back(Keyboard::Key::Right);
+    infoH.negatives.push_back(Keyboard::Key::A);
+    infoH.negatives.push_back(Keyboard::Key::Left);
+    infoH.sensi = 0.f;
+    infoH.value = 1.f;
+    
+    axisInfoMap.insert({ infoH.axis, infoH });
 
-    axisInfoMap[Axis::Horizontal].axis = Axis::Horizontal;
-    axisInfoMap[Axis::Horizontal].positives.push_back(Keyboard::Key::D);
-    axisInfoMap[Axis::Horizontal].positives.push_back(Keyboard::Key::Right);
-    axisInfoMap[Axis::Horizontal].negatives.push_back(Keyboard::Key::A);
-    axisInfoMap[Axis::Horizontal].negatives.push_back(Keyboard::Key::Left);
     //Vertical
-    AxisInfo info2;
-    info2.axis = Axis::Vertical;
-    info2.positives.push_back(Keyboard::Key::S);
-    info2.positives.push_back(Keyboard::Key::Down);
-    info2.negatives.push_back(Keyboard::Key::W);
-    info2.negatives.push_back(Keyboard::Key::Up);
-    axisInfoMap.insert({ info2.axis, info2 });
+    AxisInfo infoV;
+    infoV.axis = Axis::Vertical;
+    infoV.positives.push_back(Keyboard::Key::S);
+    infoV.positives.push_back(Keyboard::Key::Down);
+    infoV.negatives.push_back(Keyboard::Key::W);
+    infoV.negatives.push_back(Keyboard::Key::Up);
+    infoV.sensi = 0.f;
+    infoV.value = 1.f;
+
+    axisInfoMap.insert({ infoV.axis, infoV });
 
 }
 
-void InputManager::ClearInput()
+void InputManager::Update(float dt)
 {
-    //fill(downList.begin(), downList.end(), false);
-    //fill(upList.begin(), upList.end(), false);
-    for (auto idx : ingIdx)
-    {
-        downList[idx] = false;
-        upList[idx] = false;
-    }
-    ingIdx.clear();
+    fill(downList.begin(), downList.end(), false);
+    fill(upList.begin(), upList.end(), false);
 
+    for (auto it : axisInfoMap)
+    {
+        AxisInfo& axis = it.second;
+        float raw = GetAxisRaw(axis.axis);
+        if (raw == 0.f)
+        {
+            raw = axis.value > 0.f ? 1.f : 0.f;
+        }
+        axis.value += raw * axis.sensi * dt;
+    }
 }
 
-void InputManager::UpdateInput(Event& ev)
+void InputManager::ProcessInput(Event& ev)
 {
     switch (ev.type)
     {
     case Event::EventType::KeyPressed:
-        if (ev.key.code != Keyboard::Unknown && !ingList[ev.key.code]) //처음에 눌렀을때
+        if (ev.key.code != Keyboard::Key::Unknown &&
+            !ingList[ev.key.code])
         {
-            downList[ev.key.code] = true;  //다운 true    ->  다음프레임(while다시시작) 에서 clear로 false로 변경
-            ingList[ev.key.code] = true;   //ing true
-            ingIdx.push_back(ev.key.code);
+            downList[(int)ev.key.code] = true;
+            ingList[(int)ev.key.code] = true;
         }
         break;
     case Event::EventType::KeyReleased:
-        if (ev.key.code != Keyboard::Unknown)
+        if (ev.key.code != Keyboard::Key::Unknown)
         {
-            ingList[ev.key.code] = false;
-            upList[ev.key.code] = true;
-            ingIdx.push_back(ev.key.code);
+            ingList[(int)ev.key.code] = false;
+            upList[(int)ev.key.code] = true;
         }
         break;
     }
@@ -83,8 +91,6 @@ bool InputManager::GetKeyUp(Keyboard::Key key)
 
 float InputManager::GetAxisRaw(Axis axis)
 {
-    //A , <- 이 키를 네가티브 입력, D, -> 포지티브 입력.
-
     const AxisInfo& info = axisInfoMap[axis];
 
     for (auto key : info.negatives)
@@ -101,25 +107,7 @@ float InputManager::GetAxisRaw(Axis axis)
     return 0;
 }
 
-
-/*
-키 A를 누르면 처음 누를때 case Event::EventType::KeyPressed: 에 걸려서
-downList 와 ingList에 들어가며,
-main 에서 GetKeyDown 을 호출하면 downList에 들어있으니 TRUE가 반환된다.
-main 에 while은 매 프레임마다 down과 ing를 초기화 해주니까.
-A를 누르고 있는 동안 다음 프레임에서는 downList에 A가 들어있지 않으니
-GetKeyDown을 호출해도 false가 나오며, GetKey를 호출하면 ingList에 들어있으니까 True가 반환.
-
-A키를 누르지 않을시에는 case Event::EventType::KeyReleased:에 걸려서
-upList에 A를 넣어주고, ingList에 A를 remove해준다.
-그 이후에 GetKey를 호출하면 A가 없으니까 False가 반환되며,
-GetKeyUp 을 호출하면 들어있으니까 True가 반환된다.
-이후에 main에서 clear해주니까 키를 땐 이후에
-GetKey와 GetKeyUp을 호출해도 아무것도 들어있지 않아서 false가 반환된다.
-
-main의 while흐름이
-키 입력 -> down,ing에 삽입 -> GetKeyDwon, GetKey 는 true , GetKeyUp은 false -> 다음프레임
--> down, up 클리어 -> dwon, up 은 false , GetKey는 true -> 다음프레임
-... 키를 땐다 -> up삽입, ing에서 삭제 -> GetKeyUp은 true, GetKeyDown GetKey는 false -> 다음프레임 -> down, up 클리어
--> GetkeyDown, GetKey, GeyKeyUp 은 false
-*/
+Axis InputManager::GetAxis()
+{
+    return Axis();
+}

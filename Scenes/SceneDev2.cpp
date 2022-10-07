@@ -9,13 +9,9 @@
 SceneDev2::SceneDev2()
 	:Scene(Scenes::Dev2)
 {
-    SpriteObject* obj = new SpriteObject();
-    obj->SetTexture(*RESOURCES_MGR->GetTexture("graphics/player5.png"));
-    objList.push_back(obj);
-
     TextObject* ui = new TextObject(
-        *RESOURCES_MGR->GetFont("fonts/DS-DIGI.ttf"), "Scene2",
-        800, 0);
+        *RESOURCES_MGR->GetFont("fonts/zombiecontrol.ttf"), "Scene2",
+        800, 0, Color::Red, 100);
     uiObjList.push_back(ui);
 }
 
@@ -25,7 +21,6 @@ SceneDev2::~SceneDev2()
 
 void SceneDev2::Enter()
 {
-    SOUND_MGR->Play("sounds/Cunningcity.ogg");
 }
 
 void SceneDev2::Exit()

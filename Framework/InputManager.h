@@ -12,29 +12,33 @@ enum class Axis
     Horizontal,
     Vertical
 };
+
 struct AxisInfo
 {
     Axis axis;
     list<Keyboard::Key> positives;
     list<Keyboard::Key> negatives;
+
+    float sensi;
+    float value;
 };
 
 class InputManager
 {
 private:
     static map<Axis, AxisInfo> axisInfoMap;
-    static vector<bool> downList;  
-    static vector<bool> ingList;   
-    static vector<bool> upList;    
-    static vector<int> ingIdx;
+    static vector<bool> downList;
+    static vector<bool> ingList;
+    static vector<bool> upList;
 public:
     static void Init();
-    static void ClearInput();
-    static void UpdateInput(Event& ev);
+    static void Update(float dt);
+    static void ProcessInput(Event& ev);
 
     static bool GetKeyDown(Keyboard::Key key);
     static bool GetKey(Keyboard::Key key);
     static bool GetKeyUp(Keyboard::Key key);
 
     static float GetAxisRaw(Axis axis);
+    static Axis GetAxis();
 };

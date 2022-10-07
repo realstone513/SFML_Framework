@@ -11,8 +11,9 @@ public:
     virtual ~SpriteObject();
 
     virtual void Init();
-    virtual void Update();
+    virtual void Update(float dt);
     virtual void Draw(RenderWindow& window);
 
     void SetTexture(Texture& tex);
+    void SetOrigin(Origins origin);
 };

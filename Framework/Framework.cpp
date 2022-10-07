@@ -4,12 +4,11 @@
 #include "SoundManager.h"
 #include "../3rd/SingleTon.h"
 #include "../Scenes/SceneMgr.h"
-#include "../DataTable/DataTableMGR.h"
+#include "../DataTable/DataTableManager.h"
 
-Framework::Framework(int width, int height)
-    :windowSize(width, height), timeScale(1.f)
+Framework::Framework()
+    : timeScale(1.f)
 {
-    window.create(VideoMode(windowSize.x, windowSize.y), "Game");
 }
 
 Framework::~Framework()
@@ -26,14 +25,22 @@ float Framework::GetRealDT() const
     return deltaTime.asSeconds();
 }
 
-bool Framework::Init()
+const Vector2i& Framework::GetWindowSize() const
 {
+    return windowSize;
+}
+
+bool Framework::Init(int width, int height)
+{
+    windowSize = { width, height };
+    window.create(VideoMode(width, height), "Game");
+
     InputManager::Init();
   
     RESOURCES_MGR->LoadAll();
     SOUND_MGR->Init();
-    SCENE_MGR->Init();
     DATATABLE_MGR->Init();
+    SCENE_MGR->Init();
     
     return true;
 }
@@ -44,13 +51,13 @@ bool Framework::Do()
     {
         deltaTime = clock.restart();
         float dt = GetDT();
-        InputManager::ClearInput();
+        InputManager::Update(dt);
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            InputManager::UpdateInput(event);
+            InputManager::ProcessInput(event);
         }
 
         window.clear();
@@ -62,5 +69,3 @@ bool Framework::Do()
 
     return true;
 }
-
-#define DATATABLE_MGR (DataTableMgr::GetInstance())

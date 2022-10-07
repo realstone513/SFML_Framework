@@ -4,7 +4,7 @@
 StringTable::StringTable()
 	: DataTable(Types::String), currentLang(Languages::KOR)
 {
-	fileNames.push_back("tables/StringTable_Kor.csv");	//
+	fileNames.push_back("tables/StringTable_Kor.csv");
 	fileNames.push_back("tables/StringTable_Eng.csv");
 	fileNames.push_back("tables/StringTable_Jpn.csv");
 }
@@ -19,8 +19,8 @@ void StringTable::SetLanguage(Languages lang)
 
 	currentLang = lang;
 	rapidcsv::Document doc(fileNames[(int)currentLang], rapidcsv::LabelParams(0, -1));
-	vector<string> keys = doc.GetColumn<string>(0);		// ID
-	vector<string> values = doc.GetColumn<string>(1);	// STRING
+	vector<string> keys = doc.GetColumn<string>(0);
+	vector<string> values = doc.GetColumn<string>(1);
 
 	for (int j = 0; j < doc.GetRowCount(); ++j)
 	{
@@ -39,16 +39,7 @@ const string& StringTable::Get(const string& id)
 	if (find == table.end())
 		return "Undefined ID";
 	return find->second;
-	//return Get(currentLang, id);
 }
-
-//const string& StringTable::Get(Languages lang, const string& id)
-//{
-//	auto find = table.find(id);
-//	if (find == table.end())
-//		return "Undefined ID";
-//	return find->second;
-//}
 
 void StringTable::Release()
 {
