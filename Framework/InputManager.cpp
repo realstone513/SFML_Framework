@@ -102,12 +102,12 @@ float InputManager::GetAxisRaw(Axis axis)
     for (auto key : info.negatives)
     {
         if (GetKey(key))
-            return -1;
+            return -1.f;
     }
     for (auto key : info.positives)
     {
         if (GetKey(key))
-            return 1;
+            return 1.f;
     }
     return 0;
 }

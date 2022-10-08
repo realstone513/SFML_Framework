@@ -88,7 +88,6 @@
     <ClCompile Include="Scenes\SceneManager.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="frameworkMain.cpp" />
     <ClCompile Include="GameObject\Object.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>

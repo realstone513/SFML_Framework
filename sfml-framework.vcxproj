@@ -174,7 +174,6 @@
     <ClCompile Include="Framework\InputManager.cpp" />
     <ClCompile Include="Framework\ResourceManager.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
-    <ClCompile Include="frameworkMain.cpp" />
     <ClCompile Include="GameObject\Object.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\SceneDev1.cpp" />
