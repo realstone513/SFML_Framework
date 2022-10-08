@@ -1,18 +1,18 @@
-#include "SceneMgr.h"
+#include "SceneManager.h"
 #include "SceneDev1.h"
 #include "SceneDev2.h"
 
-Scenes SceneMgr::GetCurrScene() const
+Scenes SceneManager::GetCurrScene() const
 {
 	return currScene;
 }
 
-Scene* SceneMgr::GetScene(Scenes scene)
+Scene* SceneManager::GetScene(Scenes scene)
 {
 	return sceneMap[scene];
 }
 
-bool SceneMgr::Init()
+bool SceneManager::Init()
 {
 	sceneMap[Scenes::Dev1] = new SceneDev1();
 	sceneMap[Scenes::Dev2] = new SceneDev2();
@@ -22,19 +22,19 @@ bool SceneMgr::Init()
 	return false;
 }
 
-void SceneMgr::ChangeScene(Scenes scene)
+void SceneManager::ChangeScene(Scenes scene)
 {
 	sceneMap[currScene]->Exit();
 	currScene = scene;
 	sceneMap[currScene]->Enter();
 }
 
-void SceneMgr::Update(float dt)
+void SceneManager::Update(float dt)
 {
 	sceneMap[currScene]->Update(dt);
 }
 
-void SceneMgr::Draw(RenderWindow& window)
+void SceneManager::Draw(RenderWindow& window)
 {
 	sceneMap[currScene]->Draw(window);
 }

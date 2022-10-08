@@ -30,5 +30,6 @@ public:
 	static float SqrMagnitude(const Vector2f& vec);
 
 	static Vector2f Normalize(const Vector2f& vec);
+	static float Lerp(float A, float B, float Alpha);
+	static Vector2f Lerp(Vector2f A, Vector2f B, float Alpha);
 };
-

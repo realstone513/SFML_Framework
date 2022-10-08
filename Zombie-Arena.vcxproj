@@ -160,7 +160,7 @@
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SceneDev1.h" />
     <ClInclude Include="Scenes\SceneDev2.h" />
-    <ClInclude Include="Scenes\SceneMgr.h" />
+    <ClInclude Include="Scenes\SceneManager.h" />
     <ClInclude Include="GameObject\SpriteObject.h" />
     <ClInclude Include="GameObject\TextObject.h" />
     <ClInclude Include="Framework\SoundManager.h" />
@@ -179,7 +179,7 @@
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\SceneDev1.cpp" />
     <ClCompile Include="Scenes\SceneDev2.cpp" />
-    <ClCompile Include="Scenes\SceneMgr.cpp" />
+    <ClCompile Include="Scenes\SceneManager.cpp" />
     <ClCompile Include="GameObject\SpriteObject.cpp" />
     <ClCompile Include="GameObject\TextObject.cpp" />
     <ClCompile Include="Framework\SoundManager.cpp" />

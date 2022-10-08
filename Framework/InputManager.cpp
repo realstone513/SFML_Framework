@@ -32,7 +32,6 @@ void InputManager::Init()
     infoV.value = 0.f;
 
     axisInfoMap.insert({ infoV.axis, infoV });
-
 }
 
 void InputManager::Update(float dt)
@@ -40,24 +39,22 @@ void InputManager::Update(float dt)
     fill(downList.begin(), downList.end(), false);
     fill(upList.begin(), upList.end(), false);
 
-    for (auto it : axisInfoMap)
+    for (auto& it : axisInfoMap)
     {
         AxisInfo& axis = it.second;
         float raw = GetAxisRaw(axis.axis);
-        if (raw == 0.f)
+        if (raw == 0.f && axis.value != 0)
         {
             raw = axis.value > 0.f ? -1.f : 1.f;
         }
         axis.value += raw * axis.sensi * dt;
-        
+
         if (axis.value > 1.0f)
             axis.value = 1.f;
         if (axis.value < -1.0f)
             axis.value = -1.f;
-        if (abs(axis.value) < 0.00001f)
+        if (abs(axis.value) < 0.001f)
             axis.value = 0.f;
-        if (axis.axis == Axis::Horizontal)
-            std::cout << axis.value << std::endl;
     }
 }
 
@@ -105,14 +102,13 @@ float InputManager::GetAxisRaw(Axis axis)
     for (auto key : info.negatives)
     {
         if (GetKey(key))
-            return -1.f;
+            return -1;
     }
     for (auto key : info.positives)
     {
         if (GetKey(key))
-            return 1.f;
+            return 1;
     }
-
     return 0;
 }
 

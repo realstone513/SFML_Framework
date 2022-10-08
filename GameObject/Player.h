@@ -5,9 +5,12 @@ class Player : public SpriteObject
 {
 protected:
 	Vector2f direction;
-	float speed;
+	Vector2f direction2;
+	float velocity;
+	float accelation;
+	float deaccelation;
 
-public:
+public: 
 	Player();
 	virtual ~Player();
 

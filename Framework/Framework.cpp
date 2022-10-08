@@ -3,7 +3,7 @@
 #include "ResourceManager.h"
 #include "SoundManager.h"
 #include "../3rd/SingleTon.h"
-#include "../Scenes/SceneMgr.h"
+#include "../Scenes/SceneManager.h"
 #include "../DataTable/DataTableManager.h"
 
 Framework::Framework()

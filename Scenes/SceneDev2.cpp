@@ -1,9 +1,8 @@
 #include "SceneDev2.h"
-#include "SceneMgr.h"
+#include "SceneManager.h"
 #include "../Framework/InputManager.h"
 #include "../Framework/ResourceManager.h"
 #include "../Framework/SoundManager.h"
-#include "../GameObject/SpriteObject.h"
 #include "../GameObject/TextObject.h"
 
 SceneDev2::SceneDev2()

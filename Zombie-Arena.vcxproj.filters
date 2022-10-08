@@ -37,7 +37,7 @@
     <ClInclude Include="Scenes\SceneDev2.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\SceneMgr.h">
+    <ClInclude Include="Scenes\SceneManager.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="GameObject\TextObject.h">
@@ -87,7 +87,7 @@
     <ClCompile Include="Scenes\SceneDev2.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\SceneMgr.cpp">
+    <ClCompile Include="Scenes\SceneManager.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />

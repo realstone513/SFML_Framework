@@ -55,3 +55,13 @@ Vector2f Utils::Normalize(const Vector2f& vec)
 		return vec;
 	return vec / mag;
 }
+
+float Utils::Lerp(float A, float B, float Alpha)
+{
+	return A * Alpha + B * (1 - Alpha);
+}
+
+Vector2f Utils::Lerp(Vector2f A, Vector2f B, float Alpha)
+{
+	return A * Alpha + B * (1 - Alpha);
+}

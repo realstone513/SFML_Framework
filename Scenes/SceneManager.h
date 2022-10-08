@@ -6,7 +6,7 @@
 
 using namespace std;
 using namespace sf;
-class SceneMgr : public Singleton<SceneMgr>
+class SceneManager : public Singleton<SceneManager>
 {
 private:
 	map<Scenes, Scene*> sceneMap;
@@ -20,4 +20,4 @@ public:
 	void Draw(RenderWindow& window);
 };
 
-#define SCENE_MGR (SceneMgr::GetInstance())
+#define SCENE_MGR (SceneManager::GetInstance())
