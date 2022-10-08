@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "../3rd/SingleTon.h"
 
+#define FRAMEWORK (Framework::GetInstance())
+
 using namespace sf;
 
 class Framework : public Singleton<Framework>
@@ -24,5 +26,3 @@ public:
 	bool Init(int width, int height);
 	bool Do();
 };
-
-#define FRAMEWORK (Framework::GetInstance())

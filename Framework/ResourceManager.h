@@ -6,8 +6,10 @@
 #include "../3rd/rapidcsv.h"
 #include "../3rd/SingleTon.h"
 
-using namespace std;
+#define RESOURCES_MGR (ResourceManager::GetInstance())
+
 using namespace sf;
+using namespace std;
 
 enum class ResourcesTypes
 {
@@ -36,4 +38,3 @@ public:
 	Font* GetFont(string id);
 	SoundBuffer* GetSoundBuffer(string id);
 };
-#define RESOURCES_MGR (ResourceManager::GetInstance())

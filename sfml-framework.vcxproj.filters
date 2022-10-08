@@ -52,9 +52,7 @@
     <ClInclude Include="Framework\SoundManager.h">
       <Filter>Frameworks</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject\Player.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
+    <ClInclude Include="RealstoneFramework.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataTable\DataTable.cpp">
@@ -90,7 +88,7 @@
     <ClCompile Include="Scenes\SceneManager.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="frameworkMain.cpp" />
     <ClCompile Include="GameObject\Object.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -102,9 +100,6 @@
     </ClCompile>
     <ClCompile Include="Framework\SoundManager.cpp">
       <Filter>Frameworks</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject\Player.cpp">
-      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

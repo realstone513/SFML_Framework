@@ -4,9 +4,9 @@
 StringTable::StringTable()
 	: DataTable(Types::String), currentLang(Languages::KOR)
 {
-	fileNames.push_back("tables/StringTable_Kor.csv");
+	/*fileNames.push_back("tables/StringTable_Kor.csv");
 	fileNames.push_back("tables/StringTable_Eng.csv");
-	fileNames.push_back("tables/StringTable_Jpn.csv");
+	fileNames.push_back("tables/StringTable_Jpn.csv");*/
 }
 
 StringTable::~StringTable()
@@ -18,6 +18,8 @@ void StringTable::SetLanguage(Languages lang)
 	Release();
 
 	currentLang = lang;
+	if (fileNames.empty())
+		return ;
 	rapidcsv::Document doc(fileNames[(int)currentLang], rapidcsv::LabelParams(0, -1));
 	vector<string> keys = doc.GetColumn<string>(0);
 	vector<string> values = doc.GetColumn<string>(1);
@@ -26,7 +28,6 @@ void StringTable::SetLanguage(Languages lang)
 	{
 		if (table.find(keys[j]) != table.end())
 		{
-			//¿À·ù
 			return;
 		}
 		table.insert({ keys[j], values[j] });

@@ -8,10 +8,6 @@
 SceneDev2::SceneDev2()
 	:Scene(Scenes::Dev2)
 {
-    TextObject* ui = new TextObject(
-        *RESOURCES_MGR->GetFont("fonts/zombiecontrol.ttf"), "Scene2",
-        800, 0, Color::Red, 100);
-    uiObjList.push_back(ui);
 }
 
 SceneDev2::~SceneDev2()
@@ -20,10 +16,12 @@ SceneDev2::~SceneDev2()
 
 void SceneDev2::Enter()
 {
+	cout << "scene2" << endl;
 }
 
 void SceneDev2::Exit()
 {
+	cout << "scene2 exit" << endl;
     SOUND_MGR->StopAll();
 }
 

@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "../GameObject/Object.h"
+// test code
+#include <iostream>
 
 using namespace sf;
 using namespace std;

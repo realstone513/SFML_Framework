@@ -3,6 +3,8 @@
 #include <SFML/Audio.hpp>
 #include <list>
 
+#define SOUND_MGR (SoundManager::GetInstance())
+
 using namespace sf;
 using namespace std;
 
@@ -28,4 +30,3 @@ public:
 
 	void Update();
 };
-#define SOUND_MGR (SoundManager::GetInstance())

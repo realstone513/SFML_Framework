@@ -4,7 +4,7 @@ int Object::objCount = 1;
 
 Object::Object()
 {
-    id = ++objCount;
+    id = objCount++;
     Init();
 }
 

@@ -4,8 +4,6 @@
 #include <vector>
 
 using namespace std;
-// map<언어, map<...>>
-	// map<아이디, 문자열>
 
 enum class Languages
 {
@@ -18,9 +16,7 @@ enum class Languages
 class StringTable : public DataTable
 {
 private:
-	//map<Languages, map<string, string>*> tables;
-
-	map<string, string> table;	// 
+	map<string, string> table;
 	Languages currentLang;
 
 public:
@@ -30,7 +26,6 @@ public:
 	void SetLanguage(Languages lang);
 
 	const string& Get(const string& id);
-	//const string& Get(Languages lang, const string& id);
 
 	virtual void Release();
 	virtual bool Load();

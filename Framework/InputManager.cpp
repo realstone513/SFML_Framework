@@ -1,6 +1,6 @@
 #include "InputManager.h"
-#include <iostream>
-#include <algorithm>
+//#include <iostream>
+//#include <algorithm>
 
 vector<bool> InputManager::downList(Keyboard::KeyCount, false);
 vector<bool> InputManager::ingList(Keyboard::KeyCount, false);

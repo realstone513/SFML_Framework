@@ -8,12 +8,6 @@
 SceneDev1::SceneDev1()
 	:Scene(Scenes::Dev1)
 {
-    TextObject* ui = new TextObject(
-        *RESOURCES_MGR->GetFont("fonts/zombiecontrol.ttf"),
-        "Scene1", 800, 0, Color::Blue, 100);
-    uiObjList.push_back(ui);
-    player = new Player();
-    objList.push_back(player);
 }
 
 SceneDev1::~SceneDev1()
@@ -22,11 +16,12 @@ SceneDev1::~SceneDev1()
 
 void SceneDev1::Enter()
 {
-    player->Init();
+	cout << "scene1 enter" << endl;
 }
 
 void SceneDev1::Exit()
 {
+	cout << "scene1 exit" << endl;
     SOUND_MGR->StopAll();
 }
 

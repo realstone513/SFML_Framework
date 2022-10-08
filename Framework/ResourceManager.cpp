@@ -1,6 +1,7 @@
 #include "ResourceManager.h"
 
 string ResourceManager::filePath("Resources.csv");
+
 ResourceManager::ResourceManager()
 {
 }

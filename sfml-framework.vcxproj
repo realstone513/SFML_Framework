@@ -22,9 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{1b9eadd6-495d-4bbe-b6cd-257bf99917bf}</ProjectGuid>
-    <RootNamespace>Zombie-Arena</RootNamespace>
+    <RootNamespace>sfml-framework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Zombie-Arena</ProjectName>
+    <ProjectName>sfml-framework</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -149,6 +149,7 @@
     <ClInclude Include="DataTable\DataTable.h" />
     <ClInclude Include="DataTable\DataTableManager.h" />
     <ClInclude Include="DataTable\StringTable.h" />
+    <ClInclude Include="RealstoneFramework.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="3rd\rapidcsv.h" />
     <ClInclude Include="Framework\InputManager.h" />
@@ -156,7 +157,6 @@
     <ClInclude Include="3rd\SingleTon.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="GameObject\Object.h" />
-    <ClInclude Include="GameObject\Player.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SceneDev1.h" />
     <ClInclude Include="Scenes\SceneDev2.h" />
@@ -173,9 +173,8 @@
     <ClCompile Include="Framework\InputManager.cpp" />
     <ClCompile Include="Framework\ResourceManager.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="frameworkMain.cpp" />
     <ClCompile Include="GameObject\Object.cpp" />
-    <ClCompile Include="GameObject\Player.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\SceneDev1.cpp" />
     <ClCompile Include="Scenes\SceneDev2.cpp" />

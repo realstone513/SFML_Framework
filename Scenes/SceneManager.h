@@ -4,8 +4,9 @@
 #include <map>
 #include "../3rd/SingleTon.h"
 
-using namespace std;
 using namespace sf;
+using namespace std;
+
 class SceneManager : public Singleton<SceneManager>
 {
 private:
