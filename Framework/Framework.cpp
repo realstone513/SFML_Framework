@@ -33,7 +33,7 @@ const Vector2i& Framework::GetWindowSize() const
 bool Framework::Init(int width, int height)
 {
     windowSize = { width, height };
-    window.create(VideoMode(width, height), "Game");
+    window.create(VideoMode(width, height), "Realstone's Pong");
 
     InputManager::Init();
   
@@ -41,7 +41,7 @@ bool Framework::Init(int width, int height)
     SOUND_MGR->Init();
     DATATABLE_MGR->Init();
     SCENE_MGR->Init();
-    
+
     return true;
 }
 
@@ -61,11 +61,16 @@ bool Framework::Do()
         }
 
         window.clear();
-        SOUND_MGR->Update();
+        SOUND_MGR->Update(dt);
         SCENE_MGR->Update(dt);
         SCENE_MGR->Draw(window);
         window.display();
     }
 
     return true;
+}
+
+void Framework::Exit()
+{
+    window.close();
 }

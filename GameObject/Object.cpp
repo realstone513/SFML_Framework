@@ -2,7 +2,17 @@
 
 int Object::objCount = 1;
 
+Object::Object(const Object& ref)
+{
+}
+
+Object& Object::operator=(const Object& ref)
+{
+    return *this;
+}
+
 Object::Object()
+    : active(true)
 {
     id = objCount++;
     Init();
@@ -20,12 +30,12 @@ int Object::GetObjectID()
 
 void Object::SetActive(bool active)
 {
-    enabled = active;
+    this->active = active;
 }
 
 bool Object::GetActive() const
 {
-    return enabled;
+    return active;
 }
 
 void Object::SetPosition(Vector2f pos)
@@ -56,5 +66,4 @@ void Object::Draw(RenderWindow& window)
 
 void Object::Translate(Vector2f delta)
 {
-    SetPosition(position + delta);
 }

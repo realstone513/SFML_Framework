@@ -8,6 +8,19 @@ Scene::~Scene()
 {
 }
 
+void Scene::Enter()
+{
+    for (const auto& obj : objList)
+    {
+        obj->Init();
+    }
+
+    for (const auto& obj : uiObjList)
+    {
+        obj->Init();
+    }
+}
+
 void Scene::Update(float dt)
 {
     for (const auto& obj : objList)
@@ -44,4 +57,19 @@ void Scene::Draw(RenderWindow& window)
             obj->Draw(window);
         }
     }
+}
+
+void Scene::Exit()
+{
+    for (const auto& obj : objList)
+    {
+        delete obj;
+    }
+    objList.clear();
+
+    for (const auto& obj : uiObjList)
+    {
+        objList.clear();
+    }
+    uiObjList.clear();
 }
