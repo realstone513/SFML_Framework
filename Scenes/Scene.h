@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "../GameObject/Object.h"
+#include "../GameObject/VertexArrayObj.h"
 
 class Player;
 
@@ -12,14 +13,16 @@ class UIMgr;
 
 enum class Scenes
 {
-	Dev1,
-	Dev2,
+	Battle
+	/*Dev1,
+	Dev2,*/
 };
 
 class Scene
 {
 protected:
 	Scenes type;
+	VertexArrayObj* background;
 	list<Object*> objList;
 	UIMgr* uiMgr;
 

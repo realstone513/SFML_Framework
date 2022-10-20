@@ -37,19 +37,14 @@ void Scene::Draw(RenderWindow& window)
 {
 	window.setView(worldView);
 
+	background->Draw(window);
+
 	for ( const auto& obj : objList )
 	{
-		if ( obj == objList.front() && obj->GetActive() )
+		if ( obj->GetActive() )
 		{
 			obj->Draw(window);
 			break;
-		}
-	}
-	for ( const auto& obj : objList )
-	{
-		if ( obj != objList.front() && obj->GetActive() )
-		{
-			obj->Draw(window);
 		}
 	}
 }

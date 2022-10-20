@@ -1,6 +1,7 @@
 #include "SceneMgr.h"
-#include "SceneDev1.h"
-#include "SceneDev2.h"
+#include "../../Scenes/BattleScene.h"
+//#include "SceneDev1.h"
+//#include "SceneDev2.h"
 
 Scenes SceneMgr::GetCurrScene() const
 {
@@ -14,10 +15,11 @@ Scene* SceneMgr::GetScene(Scenes scene)
 
 bool SceneMgr::Init()
 {
-	sceneMap[Scenes::Dev1] = new SceneDev1();
-	sceneMap[Scenes::Dev2] = new SceneDev2();
+	/*sceneMap[Scenes::Dev1] = new SceneDev1();
+	sceneMap[Scenes::Dev2] = new SceneDev2();*/
+	sceneMap[Scenes::Battle] = new BattleScene();
 
-	currScene = Scenes::Dev1;
+	currScene = Scenes::Battle;
 	sceneMap[currScene]->Enter();
 	return false;
 }
