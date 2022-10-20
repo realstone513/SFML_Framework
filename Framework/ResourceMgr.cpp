@@ -36,7 +36,10 @@ bool ResourceMgr::LoadAll()
 bool ResourceMgr::LoadTexture(string id)
 {
 	if (texMap.find(id) != texMap.end())
+	{
+		LOG::Print3String("resource load fail", id);
 		return false;
+	}
 
 	Texture* texture = new Texture();
 
@@ -52,7 +55,10 @@ bool ResourceMgr::LoadTexture(string id)
 bool ResourceMgr::LoadFont(string id)
 {
 	if (fontMap.find(id) != fontMap.end())
+	{
+		LOG::Print3String("font load fail", id);
 		return false;
+	}
 
 	Font* font = new Font();
 
@@ -68,7 +74,10 @@ bool ResourceMgr::LoadFont(string id)
 bool ResourceMgr::LoadSoundBuffer(string id)
 {
 	if (soundMap.find(id) != soundMap.end())
+	{
+		LOG::Print3String("sound load fail", id);
 		return false;
+	}
 
 	SoundBuffer* sound = new SoundBuffer();
 
@@ -83,6 +92,12 @@ bool ResourceMgr::LoadSoundBuffer(string id)
 
 bool ResourceMgr::LoadAnimationClip(string id)
 {
+	if (animationClipMap.find(id) != animationClipMap.end())
+	{
+		LOG::Print3String("animation load fail", id);
+		return false;
+	}
+
 	rapidcsv::Document csv(id);
 	auto rowClip = csv.GetRow<string>(0);
 	AnimationClip* clip = new AnimationClip();

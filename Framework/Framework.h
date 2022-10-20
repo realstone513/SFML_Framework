@@ -18,7 +18,7 @@ protected:
 
 public:
 	Framework();
-	virtual~Framework();
+	virtual ~Framework();
 
 	float GetDT() const;
 	float GetRealDT() const;
