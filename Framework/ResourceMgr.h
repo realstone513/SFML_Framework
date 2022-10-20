@@ -11,9 +11,9 @@
 using namespace sf;
 using namespace std;
 
-enum class ResourcesTypes
+enum class ResourceTypes
 {
-	Texture, Font, SoundBuffer
+	Texture, Font, SoundBuffer, AnimationClip
 };
 
 class ResourceMgr : public Singleton<ResourceMgr>
@@ -30,7 +30,7 @@ public:
 	~ResourceMgr();
 	
 	bool LoadAll();
-	bool Load(ResourcesTypes type, string id);
+	bool Load(ResourceTypes type, string id);
 	void Release();
 
 	bool LoadTexture(string id);

@@ -29,10 +29,10 @@ RenderWindow& Framework::GetWindow()
     return window;
 }
 
-bool Framework::Init(int width, int height)
+bool Framework::Init(int width, int height, std::string title)
 {
     windowSize = { width, height };
-    window.create(VideoMode(windowSize.x, windowSize.y), "Game");
+    window.create(VideoMode(windowSize.x, windowSize.y), title);
 
     RESOURCE_MGR->LoadAll();
     SOUND_MGR->Init();

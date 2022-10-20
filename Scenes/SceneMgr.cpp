@@ -19,6 +19,9 @@ bool SceneMgr::Init()
 	sceneMap[Scenes::Dev2] = new SceneDev2();*/
 	sceneMap[Scenes::Battle] = new BattleScene();
 
+	for (auto i : sceneMap)
+		i.second->Init();
+
 	currScene = Scenes::Battle;
 	sceneMap[currScene]->Enter();
 	return false;

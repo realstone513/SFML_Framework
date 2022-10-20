@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../3rd/Singleton.h"
+#include <string>
 
 using namespace sf;
 
@@ -24,7 +25,7 @@ public:
 	const Vector2i& GetWindowSize()const;
 	RenderWindow& GetWindow();
 
-	bool Init(int width, int height);
+	bool Init(int width, int height, std::string title);
 	bool Do();
 };
 

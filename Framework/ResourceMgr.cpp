@@ -23,12 +23,13 @@ bool ResourceMgr::LoadAll()
 
 	for (int i = 0; i < doc.GetRowCount(); i++)
 	{
-		if (!Load((ResourcesTypes)types[i], ids[i]))
+		if (!Load((ResourceTypes)types[i], ids[i]))
 		{
 			LOG::Print3String("resource manager load fail! file name: ", ids[i]);
 			return false;
 		}
 	}
+	LOG::Print3String("resource manager load success");
 	return true;
 }
 
@@ -97,16 +98,18 @@ bool ResourceMgr::LoadAnimationClip(string id)
 	return true;
 }
 
-bool ResourceMgr::Load(ResourcesTypes type, string id)
+bool ResourceMgr::Load(ResourceTypes type, string id)
 {
 	switch (type)
 	{
-	case ResourcesTypes::Texture:
+	case ResourceTypes::Texture:
 		return LoadTexture(id);
-	case ResourcesTypes::Font:
+	case ResourceTypes::Font:
 		return LoadFont(id);
-	case ResourcesTypes::SoundBuffer:
+	case ResourceTypes::SoundBuffer:
 		return LoadSoundBuffer(id);
+	case ResourceTypes::AnimationClip:
+		return LoadAnimationClip(id);
 	}
 
 	return false;

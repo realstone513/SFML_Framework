@@ -3,7 +3,7 @@
 int Object::objCount = 0;
 
 Object::Object()
-	:isDevMod(false)
+	: isDevMod(false), enabled(true)
 {
 	id = ++objCount;
 	Init();

@@ -3,7 +3,7 @@
 #include "../Framework/Framework.h"
 
 Scene::Scene(Scenes type)
-	:type(type)
+	: type(type)
 {
 }
 
@@ -44,7 +44,6 @@ void Scene::Draw(RenderWindow& window)
 		if ( obj->GetActive() )
 		{
 			obj->Draw(window);
-			break;
 		}
 	}
 }
