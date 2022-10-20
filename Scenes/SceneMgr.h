@@ -4,12 +4,12 @@
 #include <map>
 #include "../3rd/SingleTon.h"
 
-#define SCENE_MGR (SceneManager::GetInstance())
+#define SCENE_MGR (SceneMgr::GetInstance())
 
 using namespace sf;
 using namespace std;
 
-class SceneManager : public Singleton<SceneManager>
+class SceneMgr : public Singleton<SceneMgr>
 {
 private:
 	map<Scenes, Scene*> sceneMap;

@@ -3,8 +3,8 @@
 
 int main()
 {
-     FRAMEWORK->Init(1280, 720);
-     FRAMEWORK->Do();
+    FRAMEWORK->Init(1280, 720);
+    FRAMEWORK->Do();
 
     return 0;
 }

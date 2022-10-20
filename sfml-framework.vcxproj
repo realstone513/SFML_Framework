@@ -79,11 +79,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Pong-bin</OutDir>
+    <OutDir>..\SFML_Framework-bin</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\Pong-bin</OutDir>
+    <OutDir>..\SFML_Framework-bin</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,41 +147,54 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="3rd\OBB.h" />
+    <ClInclude Include="3rd\ObjectPool.h" />
     <ClInclude Include="DataTable\DataTable.h" />
-    <ClInclude Include="DataTable\DataTableManager.h" />
+    <ClInclude Include="DataTable\DataTableMgr.h" />
     <ClInclude Include="DataTable\StringTable.h" />
-    <ClInclude Include="RealstoneFramework.h" />
+    <ClInclude Include="Frameworks.h" />
+    <ClInclude Include="Framework\AnimationClip.h" />
+    <ClInclude Include="Framework\Animator.h" />
+    <ClInclude Include="Framework\ConsoleLogger.h" />
     <ClInclude Include="Framework\Framework.h" />
     <ClInclude Include="3rd\rapidcsv.h" />
-    <ClInclude Include="Framework\InputManager.h" />
-    <ClInclude Include="Framework\ResourceManager.h" />
+    <ClInclude Include="Framework\InputMgr.h" />
+    <ClInclude Include="Framework\ResourceMgr.h" />
     <ClInclude Include="3rd\SingleTon.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="GameObject\Object.h" />
+    <ClInclude Include="GameObject\VertexArrayObj.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Scenes\SceneDev1.h" />
     <ClInclude Include="Scenes\SceneDev2.h" />
-    <ClInclude Include="Scenes\SceneManager.h" />
-    <ClInclude Include="GameObject\SpriteObject.h" />
-    <ClInclude Include="GameObject\TextObject.h" />
-    <ClInclude Include="Framework\SoundManager.h" />
+    <ClInclude Include="Scenes\SceneMgr.h" />
+    <ClInclude Include="GameObject\SpriteObj.h" />
+    <ClInclude Include="GameObject\TextObj.h" />
+    <ClInclude Include="Framework\SoundMgr.h" />
+    <ClInclude Include="UI\UIMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataTable\DataTable.cpp" />
-    <ClCompile Include="DataTable\DataTableManager.cpp" />
+    <ClCompile Include="DataTable\DataTableMgr.cpp" />
     <ClCompile Include="DataTable\StringTable.cpp" />
+    <ClCompile Include="Framework\AnimationClip.cpp" />
+    <ClCompile Include="Framework\Animator.cpp" />
+    <ClCompile Include="Framework\ConsoleLogger.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
-    <ClCompile Include="Framework\InputManager.cpp" />
-    <ClCompile Include="Framework\ResourceManager.cpp" />
+    <ClCompile Include="Framework\InputMgr.cpp" />
+    <ClCompile Include="Framework\ResourceMgr.cpp" />
     <ClCompile Include="Framework\Utils.cpp" />
     <ClCompile Include="GameObject\Object.cpp" />
+    <ClCompile Include="GameObject\VertexArrayObj.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Scenes\SceneDev1.cpp" />
     <ClCompile Include="Scenes\SceneDev2.cpp" />
-    <ClCompile Include="Scenes\SceneManager.cpp" />
-    <ClCompile Include="GameObject\SpriteObject.cpp" />
-    <ClCompile Include="GameObject\TextObject.cpp" />
-    <ClCompile Include="Framework\SoundManager.cpp" />
+    <ClCompile Include="Scenes\SceneMgr.cpp" />
+    <ClCompile Include="GameObject\SpriteObj.cpp" />
+    <ClCompile Include="GameObject\TextObj.cpp" />
+    <ClCompile Include="Framework\SoundMgr.cpp" />
+    <ClCompile Include="UI\UIMgr.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

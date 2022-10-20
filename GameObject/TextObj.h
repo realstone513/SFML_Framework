@@ -1,25 +1,28 @@
 #pragma once
 #include "Object.h"
 
-class TextObject : public Object
+class TextObj : public Object
 {
 protected:
     Text text;
 
 public:
-    TextObject(Font& font,
+    TextObj(Font& font,
         string textString,
         float sizeX = 0, float sizeY = 0,
         Color textColor = Color::White,
         int textSize = 75);
-    virtual ~TextObject() override;
+    virtual ~TextObj() override;
 
-    virtual void Init() override;
-    virtual void Update(float dt) override;
     virtual void Draw(RenderWindow& window) override;
 
     virtual void Translate(Vector2f delta) override;
 
     void SetOrigin(Origins origin);
     void SetString(string string);
+    const string& GetString() const;
+
+    FloatRect GetGlobalBounds();
+    void SetColor(Color color);
+    void SetPos(const Vector2f& pos);
 };

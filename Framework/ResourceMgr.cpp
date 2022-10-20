@@ -1,17 +1,19 @@
-#include "ResourceManager.h"
+#include "ResourceMgr.h"
+#include "../3rd/rapidcsv.h"
+#include "ConsoleLogger.h"
 
-string ResourceManager::filePath("Resources.csv");
+string ResourceMgr::filePath("Resources.csv");
 
-ResourceManager::ResourceManager()
+ResourceMgr::ResourceMgr()
 {
 }
 
-ResourceManager::~ResourceManager()
+ResourceMgr::~ResourceMgr()
 {
 	Release();
 }
 
-bool ResourceManager::LoadAll()
+bool ResourceMgr::LoadAll()
 {
 	Release();
 	rapidcsv::Document doc(filePath, rapidcsv::LabelParams(0, -1));
@@ -22,12 +24,15 @@ bool ResourceManager::LoadAll()
 	for (int i = 0; i < doc.GetRowCount(); i++)
 	{
 		if (!Load((ResourcesTypes)types[i], ids[i]))
+		{
+			LOG::Print3String("resource manager load fail! file name: ", ids[i]);
 			return false;
+		}
 	}
 	return true;
 }
 
-bool ResourceManager::LoadTexture(string id)
+bool ResourceMgr::LoadTexture(string id)
 {
 	if (texMap.find(id) != texMap.end())
 		return false;
@@ -43,7 +48,7 @@ bool ResourceManager::LoadTexture(string id)
 	return true;
 }
 
-bool ResourceManager::LoadFont(string id)
+bool ResourceMgr::LoadFont(string id)
 {
 	if (fontMap.find(id) != fontMap.end())
 		return false;
@@ -59,7 +64,7 @@ bool ResourceManager::LoadFont(string id)
 	return true;
 }
 
-bool ResourceManager::LoadSoundBuffer(string id)
+bool ResourceMgr::LoadSoundBuffer(string id)
 {
 	if (soundMap.find(id) != soundMap.end())
 		return false;
@@ -75,34 +80,39 @@ bool ResourceManager::LoadSoundBuffer(string id)
 	return true;
 }
 
-bool ResourceManager::Load(ResourcesTypes type, string id)
+bool ResourceMgr::LoadAnimationClip(string id)
+{
+	rapidcsv::Document csv(id);
+	auto rowClip = csv.GetRow<string>(0);
+	AnimationClip* clip = new AnimationClip();
+	clip->id = rowClip[0];
+	clip->loopType = (LoopTypes)stoi(rowClip[1]);
+	clip->fps = stoi(rowClip[2]);
+
+	for (int i = 3; i < csv.GetRowCount(); ++i)
+	{
+		clip->frames.push_back(csv.GetRow<string>(i));
+	}
+	animationClipMap.insert({ clip->id, clip });
+	return true;
+}
+
+bool ResourceMgr::Load(ResourcesTypes type, string id)
 {
 	switch (type)
 	{
 	case ResourcesTypes::Texture:
 		return LoadTexture(id);
-		break;
 	case ResourcesTypes::Font:
 		return LoadFont(id);
-		break;
 	case ResourcesTypes::SoundBuffer:
 		return LoadSoundBuffer(id);
-		break;
-	default:
-		break;
 	}
+
 	return false;
 }
 
-Texture* ResourceManager::GetTexture(string id)
-{
-	auto it = texMap.find(id);
-	if (it == texMap.end())
-		return nullptr;
-	else
-		return it->second;
-}
-void ResourceManager::Release()
+void ResourceMgr::Release()
 {
 	for (auto it : texMap)
 	{
@@ -119,22 +129,41 @@ void ResourceManager::Release()
 		delete it.second;
 	}
 	soundMap.clear();
+	for (auto it : animationClipMap)
+	{
+		delete it.second;
+	}
+	animationClipMap.clear();
 }
 
-Font* ResourceManager::GetFont(string id)
+Texture* ResourceMgr::GetTexture(string id)
+{
+	auto it = texMap.find(id);
+	if (it == texMap.end())
+		return nullptr;
+	return it->second;
+}
+
+Font* ResourceMgr::GetFont(string id)
 {
 	auto it = fontMap.find(id);
 	if (it == fontMap.end())
 		return nullptr;
-	else
-		return it->second;
+	return it->second;
 }
 
-SoundBuffer* ResourceManager::GetSoundBuffer(string id)
+SoundBuffer* ResourceMgr::GetSoundBuffer(string id)
 {
 	auto it = soundMap.find(id);
 	if (it == soundMap.end())
 		return nullptr;
-	else
-		return it->second;
+	return it->second;
+}
+
+AnimationClip* ResourceMgr::GetAnimationClip(string id)
+{
+	auto it = animationClipMap.find(id);
+	if (it == animationClipMap.end())
+		return nullptr;
+	return it->second;
 }

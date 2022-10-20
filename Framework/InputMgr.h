@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <list>
-#include <vector>
 #include <map>
 
 using namespace sf;
@@ -23,13 +22,14 @@ struct AxisInfo
     float value;
 };
 
-class InputManager
+class InputMgr
 {
 private:
     static map<Axis, AxisInfo> axisInfoMap;
-    static vector<bool> downList;
-    static vector<bool> ingList;
-    static vector<bool> upList;
+    static list<int> downList;
+    static list<int> ingList;
+    static list<int> upList;
+    static Vector2f mousePos;
 
 public:
     static void Init();
@@ -40,6 +40,11 @@ public:
     static bool GetKey(Keyboard::Key key);
     static bool GetKeyUp(Keyboard::Key key);
 
-    static float GetAxisRaw(Axis axis);
     static float GetAxis(Axis axis);
+    static float GetAxisRaw(Axis axis);
+
+    static const Vector2f& GetMousePos();
+    static bool GetMouseDown(Mouse::Button key);
+    static bool GetMouse(Mouse::Button key);
+    static bool GetMouseUp(Mouse::Button key);
 };

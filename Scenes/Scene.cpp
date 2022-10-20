@@ -1,75 +1,84 @@
 #include "Scene.h"
+#include "../Framework/ResourceMgr.h"
+#include "../Framework/Framework.h"
 
-Scene::Scene(Scenes type) :type(type)
+Scene::Scene(Scenes type)
+	:type(type)
 {
 }
 
 Scene::~Scene()
 {
+	Release();
 }
 
-void Scene::Enter()
+void Scene::Release()
 {
-    for (const auto& obj : objList)
-    {
-        obj->Init();
-    }
-
-    for (const auto& obj : uiObjList)
-    {
-        obj->Init();
-    }
+	for ( const auto& obj : objList )
+	{
+		obj->Release();
+		delete obj;
+	}
+	objList.clear();
 }
 
 void Scene::Update(float dt)
 {
-    for (const auto& obj : objList)
-    {
-        if (obj->GetActive())
-        {
-            obj->Update(dt);
-        }
-    }
-
-    for (const auto& obj : uiObjList)
-    {
-        if (obj->GetActive())
-        {
-            obj->Update(dt);
-        }
-    }
+	for ( const auto& obj : objList )
+	{
+		if ( obj->GetActive() )
+		{
+			obj->Update(dt);
+		}
+	}
 }
 
 void Scene::Draw(RenderWindow& window)
 {
-    for (const auto& obj : objList)
-    {
-        if (obj->GetActive())
-        {
-            obj->Draw(window);
-        }
-    }
+	window.setView(worldView);
 
-    for (const auto& obj : uiObjList)
-    {
-        if (obj->GetActive())
-        {
-            obj->Draw(window);
-        }
-    }
+	for ( const auto& obj : objList )
+	{
+		if ( obj == objList.front() && obj->GetActive() )
+		{
+			obj->Draw(window);
+			break;
+		}
+	}
+	for ( const auto& obj : objList )
+	{
+		if ( obj != objList.front() && obj->GetActive() )
+		{
+			obj->Draw(window);
+		}
+	}
 }
 
-void Scene::Exit()
+Texture* Scene::GetTexture(string id)
 {
-    for (const auto& obj : objList)
-    {
-        delete obj;
-    }
-    objList.clear();
+	return RESOURCE_MGR->GetTexture(id);
+}
 
-    for (const auto& obj : uiObjList)
-    {
-        objList.clear();
-    }
-    uiObjList.clear();
+Vector2f Scene::ScreenToWorldPos(Vector2i screenPos)
+{
+	RenderWindow& window = FRAMEWORK->GetWindow();
+	return window.mapPixelToCoords(screenPos, worldView);
+}
+
+Vector2f Scene::ScreenToUiPos(Vector2i screenPos)
+{
+	RenderWindow& window = FRAMEWORK->GetWindow();
+	return window.mapPixelToCoords(screenPos, uiView);
+}
+
+Object* Scene::FindGameObj(string name)
+{
+	for ( auto obj : objList )
+	{
+		if ( obj->GetName() == name )
+		{
+			return obj;
+		}
+	}
+	return nullptr;
 }

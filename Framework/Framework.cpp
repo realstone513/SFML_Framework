@@ -1,13 +1,12 @@
 #include "Framework.h"
-#include "InputManager.h"
-#include "ResourceManager.h"
-#include "SoundManager.h"
-#include "../3rd/SingleTon.h"
-#include "../Scenes/SceneManager.h"
-#include "../DataTable/DataTableManager.h"
+#include "InputMgr.h"
+#include "../Scenes/SceneMgr.h"
+#include "ResourceMgr.h"
+#include "../DataTable/DataTableMGR.h"
+#include "../Framework/SoundMgr.h"
 
 Framework::Framework()
-    : timeScale(1.f)
+    :timeScale(1.f)
 {
 }
 
@@ -30,47 +29,49 @@ const Vector2i& Framework::GetWindowSize() const
     return windowSize;
 }
 
+RenderWindow& Framework::GetWindow()
+{
+    return window;
+}
+
 bool Framework::Init(int width, int height)
 {
     windowSize = { width, height };
-    window.create(VideoMode(width, height), "Realstone's Pong");
+    window.create(VideoMode(windowSize.x, windowSize.y), "Game");
 
-    InputManager::Init();
-  
-    RESOURCES_MGR->LoadAll();
+    RESOURCE_MGR->LoadAll();
     SOUND_MGR->Init();
     DATATABLE_MGR->Init();
     SCENE_MGR->Init();
+    InputMgr::Init();
 
     return true;
 }
 
 bool Framework::Do()
 {
-    while (window.isOpen())
+    while ( window.isOpen() )
     {
         deltaTime = clock.restart();
         float dt = GetDT();
-        InputManager::Update(dt);
-        sf::Event event;
-        while (window.pollEvent(event))
+
+        InputMgr::Update(dt);
+        Event ev;
+        while ( window.pollEvent(ev) )
         {
-            if (event.type == sf::Event::Closed)
+            if ( ev.type == Event::Closed )
+            {
                 window.close();
-            InputManager::ProcessInput(event);
+            }
+            InputMgr::ProcessInput(ev);
         }
+        SCENE_MGR->Update(dt);
+        SOUND_MGR->Update(dt);
 
         window.clear();
-        SOUND_MGR->Update(dt);
-        SCENE_MGR->Update(dt);
         SCENE_MGR->Draw(window);
         window.display();
     }
 
-    return true;
-}
-
-void Framework::Exit()
-{
-    window.close();
+	return true;
 }

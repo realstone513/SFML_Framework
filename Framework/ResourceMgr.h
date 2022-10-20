@@ -3,10 +3,10 @@
 #include <SFML/Audio.hpp>
 #include <map>
 #include <string>
-#include "../3rd/rapidcsv.h"
+#include "AnimationClip.h"
 #include "../3rd/SingleTon.h"
 
-#define RESOURCES_MGR (ResourceManager::GetInstance())
+#define RESOURCE_MGR (ResourceMgr::GetInstance())
 
 using namespace sf;
 using namespace std;
@@ -16,25 +16,30 @@ enum class ResourcesTypes
 	Texture, Font, SoundBuffer
 };
 
-class ResourceManager : public Singleton<ResourceManager>
+class ResourceMgr : public Singleton<ResourceMgr>
 {
 private:
 	map<string, Texture*> texMap;
 	map<string, Font*> fontMap;
 	map<string, SoundBuffer*> soundMap;
+	map<string, AnimationClip*> animationClipMap;
 
 public:
 	static string filePath;
-	ResourceManager();
-	~ResourceManager();
+	ResourceMgr();
+	~ResourceMgr();
 	
 	bool LoadAll();
+	bool Load(ResourcesTypes type, string id);
+	void Release();
+
 	bool LoadTexture(string id);
 	bool LoadFont(string id);
 	bool LoadSoundBuffer(string id);
-	bool Load(ResourcesTypes type, string id);
-	void Release();
+	bool LoadAnimationClip(string id);
+
 	Texture* GetTexture(string id);
 	Font* GetFont(string id);
 	SoundBuffer* GetSoundBuffer(string id);
+	AnimationClip* GetAnimationClip(string id);
 };

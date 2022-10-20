@@ -5,17 +5,17 @@
 
 using namespace std;
 
-class DataTableManager : public Singleton<DataTableManager>
+class DataTableMgr : public Singleton<DataTableMgr>
 {
 private:
 	map<DataTable::Types, DataTable*> tables;
 
-	DataTableManager(const DataTableManager& ref);
-	DataTableManager& operator=(const DataTableManager& ref);
+	DataTableMgr(const DataTableMgr& ref);
+	DataTableMgr& operator=(const DataTableMgr& ref);
 
 public:
-	DataTableManager();
-	~DataTableManager();
+	DataTableMgr();
+	~DataTableMgr();
 
 	void Init();
 	void Release();
@@ -25,11 +25,12 @@ public:
 };
 
 template<typename T>
-inline T* DataTableManager::Get(DataTable::Types type)
+inline T* DataTableMgr::Get(DataTable::Types type)
 {
 	auto find = tables.find(type);
 	if (find == tables.end())
 		return nullptr;
 	return dynamic_cast<T*>(find->second);
 }
-#define DATATABLE_MGR (DataTableManager::GetInstance())
+
+#define DATATABLE_MGR (DataTableMgr::GetInstance())

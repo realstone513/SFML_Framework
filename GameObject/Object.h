@@ -1,42 +1,60 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <string>
 #include "../Framework/Utils.h"
 
-using namespace sf;
 using namespace std;
+using namespace sf;
 
 class Object
 {
 protected:
-    int id;
-    string name;
-    bool active;
+	int id;
+	string name;
+	string type;
+	bool enabled;
 
-    Vector2f position;
-    float rotation;
-    Vector2f scale;
+	Vector2f  position;
+	float rotation;
+	Vector2f scale;
 
-    static int objCount;
+	static int objCount;
+	
+	RectangleShape hitbox;
+	FloatRect hitBoxRect;
 
-    Object(const Object& ref);
-    Object& operator= (const Object& ref);
+	bool isDevMod;
 
 public:
-    Object();
-    virtual ~Object();
+	Object();
+	virtual ~Object();
 
-    int GetObjectID();
+	int GetObjId()const;
+	const string& GetName() const { return name; }
+	void SetName(const string& n) { name = n; }
+	const string& GetType() const { return type; }
+	void SetType(const string& t) { type = t; }
 
-    virtual void SetActive(bool active);
-    virtual bool GetActive() const;
+	virtual void SetActive(bool active);
+	virtual bool GetActive();
 
-    virtual void SetPosition(Vector2f pos);
-    virtual Vector2f GetPosition() const;
+	virtual void Init();
+	virtual void Release();
 
-    virtual void Init();
-    virtual void Release();
-    virtual void Update(float dt);
-    virtual void Draw(RenderWindow& window);
+	virtual void Reset();
 
-    virtual void Translate(Vector2f delta);
+	virtual void SetPos(const Vector2f& pos);
+	virtual const Vector2f& GetPos() const;
+	virtual void Translate(const Vector2f delta);
+
+	virtual void Update(float dt);
+	virtual void Draw(RenderWindow& window);
+
+	virtual void SetHitbox(const FloatRect rect);
+	virtual RectangleShape GetHitbox() const;
+
+	virtual void SetDevMode(bool dev)
+	{
+		isDevMod = dev;
+	}
 };

@@ -1,18 +1,10 @@
 #include "Utils.h"
-
+#include "../3rd/OBB.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-random_device Utils::rd;
-mt19937 Utils::gen(Utils::rd());
-
-void Utils::SetOrigin(Transformable& obj, Origins origin, FloatRect rect)
-{
-	Vector2f originPos(rect.width, rect.height);
-	originPos.x *= ((int)origin % 3) * 0.5f;
-	originPos.y *= ((int)origin / 3) * 0.5f;
-	obj.setOrigin(originPos);
-}
+std::random_device Utils::rd;
+std::mt19937 Utils::gen(Utils::rd());
 
 void Utils::SetOrigin(Text& obj, Origins origin)
 {
@@ -29,43 +21,101 @@ void Utils::SetOrigin(Shape& obj, Origins origin)
 	SetOrigin(obj, origin, obj.getLocalBounds());
 }
 
-int Utils::Random(int min, int maxExclude)
+void Utils::SetOrigin(Transformable& obj, Origins origin, FloatRect rect)
 {
-	return (gen() % (maxExclude - min)) + min;
+	Vector2f originPos(rect.width, rect.height);
+	originPos.x *= ((int)origin % 3) * 0.5f;
+	originPos.y *= ((int)origin / 3) * 0.5f;
+	obj.setOrigin(originPos);
 }
 
-float Utils::Random(float min, int maxInclude)
+float Utils::Clamp(float v, float min, float max)
 {
-	float div = maxInclude - min + 1.0f;
-	std::uniform_real_distribution<> dist(min, maxInclude);
+	if ( v < min )
+	{
+		return min;
+	}
+	if ( v > max )
+	{
+		return max;
+	}
+	return v;
+}
+
+int Utils::RandomRange(int min, int maxInclude)
+{
+	return (gen() % (maxInclude - min)) + min;
+}
+
+float Utils::RandomRange(float min, float maxInclude)
+{
+	uniform_real_distribution<> dist(min, maxInclude);
 	return dist(gen);
 }
 
-float Utils::DotProduct2d(const Vector2f& vec1, const Vector2f& vec2)
+float Utils::RandomZeroToOne()
 {
-	return vec1.x * vec2.x + vec1.y * vec2.y;
+	return RandomRange(0.f, 1.f);
 }
 
-float Utils::Magnitude(const Vector2f& vec)
+Vector2f Utils::RandomInCirclePoint()
 {
-	return sqrt(SqrMagnitude(vec));
+	return RandomZeroToOne() * RandomOutCirclePoint();
+}
+
+Vector2f Utils::RandomOutCirclePoint()
+{
+	float radian = RandomRange(0.f, M_PI * 2);
+	return Vector2f({ cos(radian), sin(radian) });
 }
 
 float Utils::SqrMagnitude(const Vector2f& vec)
 {
-	return DotProduct2d(vec, vec);
+	return vec.x * vec.x + vec.y * vec.y;
+}
+
+float Utils::Magnitude(const Vector2f& vec)
+{
+	return sqrt(vec.x * vec.x + vec.y * vec.y);
 }
 
 Vector2f Utils::Normalize(const Vector2f& vec)
 {
 	float mag = Magnitude(vec);
-	
-	if (mag == 0)
+	if ( mag == 0.f )
+	{
 		return vec;
+	}
 	return vec / mag;
 }
 
-float Utils::GetAngleBetweenTwoVec(const Vector2f& vec1, const Vector2f& vec2)
+float Utils::Distance(const Vector2f& vec1, const Vector2f& vec2)
 {
-	return acos(DotProduct2d(vec1, vec2) / (Magnitude(vec1) * Magnitude(vec2))) / M_PI * 180.f;
+	return Magnitude(vec1 - vec2);
+}
+
+float Utils::Dot(const Vector2f& a, const Vector2f& b)
+{
+	return a.x * b.x + a.y + b.y;
+}
+
+Vector2f Utils::GetNormal(const Vector2f& vec)
+{
+	return Vector2f(-vec.y, vec.x);
+}
+
+float Utils::Angle(const Vector2f& start, const Vector2f& end)
+{
+	return Angle(Normalize(end - start));
+}
+
+float Utils::Angle(const Vector2f& dir)
+{
+	return atan2(dir.y, dir.x) * (180.f / M_PI);
+}
+
+bool Utils::OBB(const RectangleShape& obb1, const RectangleShape& obb2)
+{
+	Vector2f MTV;
+	return testCollision(obb1, obb2, MTV);
 }

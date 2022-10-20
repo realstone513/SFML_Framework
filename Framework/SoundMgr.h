@@ -3,12 +3,12 @@
 #include <SFML/Audio.hpp>
 #include <list>
 
-#define SOUND_MGR (SoundManager::GetInstance())
+#define SOUND_MGR (SoundMgr::GetInstance())
 
 using namespace sf;
 using namespace std;
 
-class SoundManager : public Singleton<SoundManager>
+class SoundMgr : public Singleton<SoundMgr>
 {
 private:
 	list<Sound*> playing;
@@ -17,8 +17,8 @@ private:
 	float globalVolume;
 
 public:
-	SoundManager();
-	virtual ~SoundManager();
+	SoundMgr();
+	virtual ~SoundMgr();
 	
 	const int TotalChannels;
 
@@ -29,4 +29,5 @@ public:
 	void StopAll();
 
 	void Update(float dt);
+	void SetVolume(float num);
 };

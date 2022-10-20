@@ -1,18 +1,17 @@
-#include "SoundManager.h"
-#include "ResourceManager.h"
+#include "SoundMgr.h"
+#include "ResourceMgr.h"
 
-SoundManager::SoundManager()
+SoundMgr::SoundMgr()
 	: TotalChannels(64), globalVolume(100.f)
 {
-	Init();
 }
 
-SoundManager::~SoundManager()
+SoundMgr::~SoundMgr()
 {
 	Release();
 }
 
-void SoundManager::Init()
+void SoundMgr::Init()
 {
 	Release();
 
@@ -22,7 +21,7 @@ void SoundManager::Init()
 	}
 }
 
-void SoundManager::Release()
+void SoundMgr::Release()
 {
 	for (auto sound : waiting)
 	{
@@ -37,7 +36,7 @@ void SoundManager::Release()
 	playing.clear();
 }
 
-void SoundManager::Play(string id, float volume, bool loop)
+void SoundMgr::Play(string id, float volume, bool loop)
 {
 	if (waiting.empty())
 	{
@@ -47,7 +46,7 @@ void SoundManager::Play(string id, float volume, bool loop)
 	Sound* sound = waiting.front();
 	waiting.pop_front();
 
-	SoundBuffer* sBuffer = RESOURCES_MGR->GetSoundBuffer(id);
+	SoundBuffer* sBuffer = RESOURCE_MGR->GetSoundBuffer(id);
 	sound->setBuffer(*sBuffer);
 	sound->setLoop(loop);
 	sound->setVolume(globalVolume > volume ? volume : globalVolume);
@@ -56,7 +55,7 @@ void SoundManager::Play(string id, float volume, bool loop)
 	playing.push_back(sound);
 }
 
-void SoundManager::StopAll()
+void SoundMgr::StopAll()
 {
 	for (auto sound : playing)
 	{
@@ -64,7 +63,7 @@ void SoundManager::StopAll()
 	}
 }
 
-void SoundManager::Update(float dt)
+void SoundMgr::Update(float dt)
 {
 	auto it = playing.begin();
 	while (it != playing.end())
@@ -80,4 +79,9 @@ void SoundManager::Update(float dt)
 			it++;
 		}
 	}
+}
+
+void SoundMgr::SetVolume(float num)
+{
+	globalVolume += num;
 }

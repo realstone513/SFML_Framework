@@ -1,59 +1,66 @@
 #include "Object.h"
 
-int Object::objCount = 1;
-
-Object::Object(const Object& ref)
-{
-}
-
-Object& Object::operator=(const Object& ref)
-{
-    return *this;
-}
+int Object::objCount = 0;
 
 Object::Object()
-    : active(true)
+	:isDevMod(false)
 {
-    id = objCount++;
-    Init();
+	id = ++objCount;
+	Init();
 }
 
 Object::~Object()
 {
-    Release();
+	Release();
 }
 
-int Object::GetObjectID()
+int Object::GetObjId() const
 {
-    return id;
+	return id;
 }
 
 void Object::SetActive(bool active)
 {
-    this->active = active;
+	enabled = active;
 }
 
-bool Object::GetActive() const
+bool Object::GetActive()
 {
-    return active;
-}
-
-void Object::SetPosition(Vector2f pos)
-{
-    position = pos;
-}
-
-Vector2f Object::GetPosition() const
-{
-    return position;
+	return enabled;
 }
 
 void Object::Init()
 {
+	hitbox.setFillColor(Color::Red);
+	hitbox.setOutlineColor(Color::Black);
+	hitbox.setOutlineThickness(2.f);
+	Reset();
 }
 
 void Object::Release()
 {
+}
+
+void Object::Reset()
+{
+	enabled = true;
+}
+
+void Object::SetPos(const Vector2f& pos)
+{
+	position = pos;
+	Vector2f hitboxPos = { hitBoxRect.left, hitBoxRect.top };
+	hitbox.setPosition(hitboxPos + pos);
+}
+
+const Vector2f& Object::GetPos() const
+{
+	return position;
+}
+
+void Object::Translate(Vector2f delta)
+{
+	SetPos(position + delta);
 }
 
 void Object::Update(float dt)
@@ -62,8 +69,20 @@ void Object::Update(float dt)
 
 void Object::Draw(RenderWindow& window)
 {
+	if ( isDevMod )
+	{
+		window.draw(hitbox);
+	}
 }
 
-void Object::Translate(Vector2f delta)
+void Object::SetHitbox(const FloatRect rect)
 {
+	hitBoxRect = rect;
+	hitbox.setSize({ rect.width, rect.height });
+	Utils::SetOrigin(hitbox, Origins::MC);
+}
+
+RectangleShape Object::GetHitbox() const
+{
+	return hitbox;
 }
