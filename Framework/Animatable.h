@@ -6,17 +6,27 @@
 class Animatable
 {
 protected:
+	enum class States
+	{
+		None = -1,
+		Idle,
+		Move,
+		Attack,
+		Special,
+		Hit,
+		Death,
+		Others
+	};
 	Animator anim;
-	int currState;
+	States currState;
 
 public:
-	void SetState(int newState)
+	void SetState(States newState)
 	{
 		if (currState == newState)
 			return;
 		currState = newState;
 	}
-	// 추가 예정
 
 	virtual void SetAnimations() = 0;
 	void AddClipFast(string clipId, int frame)
