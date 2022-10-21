@@ -19,7 +19,7 @@ void ConsoleLogger::Print3String(string str1, string str2, string str3)
 void ConsoleLogger::WriteCSV(string id, 
 	int loopType, int fps, int frameCount,
 	string textureID, int left, int top, int width, int height,
-	int xSize, int ySize, bool writeToRss, int flipX, int flipY)
+	int xOrigin, int yOrigin, bool writeToRss, int flipX, int flipY)
 {
 	CSVWriter csv(",");
 	csv.newRow() << "ID" << "LOOPTYPE (0: Single 1: Move)" << "FPS";
@@ -32,7 +32,7 @@ void ConsoleLogger::WriteCSV(string id,
 	string texturePath = "graphics/" + textureID + ".png";
 	for (int i = 0; i < frameCount; i++)
 	{
-		csv << texturePath << leftStart << top << width << height << xSize << ySize << flipX << flipY;
+		csv << texturePath << leftStart << top << width << height << xOrigin << yOrigin << flipX << flipY;
 		leftStart += left;
 	}
 	std::cout << csv << std::endl;

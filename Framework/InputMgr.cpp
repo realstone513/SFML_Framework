@@ -1,4 +1,5 @@
 #include "InputMgr.h"
+#include "Framework.h"
 
 map<Axis, AxisInfo> InputMgr::axisInfoMap;
 list<int>InputMgr::downList;
@@ -55,6 +56,7 @@ void InputMgr::Update(float dt)
         if (abs(axis.value) < 0.001f)
             axis.value = 0.f;
     }
+    mousePos = (Vector2f)Mouse::getPosition(FRAMEWORK->GetWindow());
 }
 
 void InputMgr::ProcessInput(Event& ev)
@@ -115,16 +117,24 @@ float InputMgr::GetAxis(Axis axis)
 float InputMgr::GetAxisRaw(Axis axis)
 {
     const AxisInfo& info = axisInfoMap[axis];
-
-    for (auto key : info.negatives)
+    auto it = ingList.rbegin();
+    while (it != ingList.rend())
     {
-        if (GetKey(key))
-            return -1.f;
-    }
-    for (auto key : info.positives)
-    {
-        if (GetKey(key))
-            return 1.f;
+        if (*it < Keyboard::KeyCount)
+        {
+            Keyboard::Key key = (Keyboard::Key)*it;
+            if (find(info.negatives.begin(), info.negatives.end(), key) !=
+                info.negatives.end())
+            {
+                return -1.f;
+            }
+            if (find(info.positives.begin(), info.positives.end(), key) !=
+                info.positives.end())
+            {
+                return 1.f;
+            }
+        }
+        ++it;
     }
     return 0;
 }

@@ -50,7 +50,8 @@ public:
 	virtual void Update(float dt);
 	virtual void Draw(RenderWindow& window);
 
-	virtual void SetHitbox(const FloatRect rect);
+	virtual void SetHitbox(const FloatRect rect, Origins origin);
+	virtual void SetHitboxScale(float x, float y);
 	virtual RectangleShape GetHitbox() const;
 
 	virtual void SetDevMode(bool dev)

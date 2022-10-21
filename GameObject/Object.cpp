@@ -75,11 +75,16 @@ void Object::Draw(RenderWindow& window)
 	}
 }
 
-void Object::SetHitbox(const FloatRect rect)
+void Object::SetHitbox(const FloatRect rect, Origins origin)
 {
 	hitBoxRect = rect;
 	hitbox.setSize({ rect.width, rect.height });
-	Utils::SetOrigin(hitbox, Origins::MC);
+	Utils::SetOrigin(hitbox, origin);
+}
+
+void Object::SetHitboxScale(float x, float y)
+{
+	hitbox.setScale(x, y);
 }
 
 RectangleShape Object::GetHitbox() const
