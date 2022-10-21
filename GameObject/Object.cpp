@@ -31,7 +31,7 @@ bool Object::GetActive()
 
 void Object::Init()
 {
-	hitbox.setFillColor(Color::Red);
+	hitbox.setFillColor(Color(255, 0, 0, 60));
 	hitbox.setOutlineColor(Color::Black);
 	hitbox.setOutlineThickness(2.f);
 	Reset();

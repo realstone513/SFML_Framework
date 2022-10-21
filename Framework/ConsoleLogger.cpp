@@ -1,5 +1,6 @@
 #include "ConsoleLogger.h"
 #include <iostream>
+#include <sstream>
 #include "../3rd/CSVWriter.h"
 
 void ConsoleLogger::PrintVectorState(Vector2f vec, string name)
@@ -10,7 +11,9 @@ void ConsoleLogger::PrintVectorState(Vector2f vec, string name)
 
 void ConsoleLogger::Print3String(string str1, string str2, string str3)
 {
-	cout << str1 << " " << str2 << " " << str3 << endl;
+	stringstream ss;
+	ss << str1 << " " << str2 << " " << str3;
+	cout << ss.str() << endl;
 }
 
 // Main ¸Ç À­ÁÙ¿¡
