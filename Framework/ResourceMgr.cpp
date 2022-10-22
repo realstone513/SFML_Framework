@@ -25,11 +25,11 @@ bool ResourceMgr::LoadAll()
 	{
 		if (!Load((ResourceTypes)types[i], ids[i]))
 		{
-			LOG::Print3String("resource manager load fail! file name: ", ids[i]);
+			CLOG::Print3String("resource manager load fail! file name: ", ids[i]);
 			return false;
 		}
 	}
-	LOG::Print3String("resource manager load success");
+	CLOG::Print3String("resource manager load success");
 	return true;
 }
 
@@ -37,7 +37,7 @@ bool ResourceMgr::LoadTexture(string id)
 {
 	if (texMap.find(id) != texMap.end())
 	{
-		LOG::Print3String("resource load fail", id);
+		CLOG::Print3String("resource load fail", id);
 		return false;
 	}
 
@@ -56,7 +56,7 @@ bool ResourceMgr::LoadFont(string id)
 {
 	if (fontMap.find(id) != fontMap.end())
 	{
-		LOG::Print3String("font load fail", id);
+		CLOG::Print3String("font load fail", id);
 		return false;
 	}
 
@@ -75,7 +75,7 @@ bool ResourceMgr::LoadSoundBuffer(string id)
 {
 	if (soundMap.find(id) != soundMap.end())
 	{
-		LOG::Print3String("sound load fail", id);
+		CLOG::Print3String("sound load fail", id);
 		return false;
 	}
 
@@ -94,7 +94,7 @@ bool ResourceMgr::LoadAnimationClip(string id)
 {
 	if (animationClipMap.find(id) != animationClipMap.end())
 	{
-		LOG::Print3String("animation load fail", id);
+		CLOG::Print3String("animation load fail", id);
 		return false;
 	}
 

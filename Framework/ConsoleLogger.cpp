@@ -9,6 +9,20 @@ void ConsoleLogger::PrintVectorState(Vector2f vec, string name)
 		"(" << vec.x << " " << vec.y << ")" << endl;
 }
 
+void ConsoleLogger::PrintVectorState(Vector2i vec, string name)
+{
+	cout << name << "(" << vec.x << " " << vec.y << ")" << endl;
+}
+
+void ConsoleLogger::PrintRectState(FloatRect fr, string name)
+{
+	cout << name
+		<< " left: " << fr.left
+		<< " top: " << fr.top
+		<< " width: " << fr.width
+		<< " height: " << fr.height << endl;
+}
+
 void ConsoleLogger::Print3String(string str1, string str2, string str3)
 {
 	stringstream ss;
@@ -38,7 +52,7 @@ void ConsoleLogger::WriteCSV(string id,
 		csv << texturePath << leftStart << top << width << height << xOrigin << yOrigin << flipX << flipY;
 		leftStart += left;
 	}
-	std::cout << csv << std::endl;
+	cout << csv << endl;
 
 	string filepath = "animations/" + id + ".csv";
 	csv.writeToFile(filepath);
@@ -48,6 +62,6 @@ void ConsoleLogger::WriteCSV(string id,
 	CSVWriter resourceFile(",");
 	resourceFile.newRow() << filepath << 3;
 
-	std::cout << resourceFile << std::endl;
+	cout << resourceFile << endl;
 	resourceFile.writeToFile("Resources.csv", true);
 }
