@@ -23,8 +23,6 @@ protected:
 	RectangleShape hitbox;
 	FloatRect hitBoxRect;
 
-	bool isDevMod;
-
 public:
 	Object();
 	virtual ~Object();
@@ -53,9 +51,4 @@ public:
 	virtual void SetHitbox(const FloatRect rect, Origins origin);
 	virtual void SetHitboxScale(float x, float y);
 	virtual RectangleShape GetHitbox() const;
-
-	virtual void SetDevMode(bool dev)
-	{
-		isDevMod = dev;
-	}
 };

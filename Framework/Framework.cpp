@@ -1,7 +1,7 @@
 #include "../Frameworks.h"
 
 Framework::Framework()
-    :timeScale(1.f)
+    : timeScale(1.f), devMode(false)
 {
 }
 

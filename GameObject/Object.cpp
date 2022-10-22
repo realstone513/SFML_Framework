@@ -1,9 +1,10 @@
 #include "Object.h"
+#include "../Framework/Framework.h"
 
 int Object::objCount = 0;
 
 Object::Object()
-	: isDevMod(false), enabled(true)
+	: enabled(true)
 {
 	id = ++objCount;
 	Init();
@@ -69,7 +70,7 @@ void Object::Update(float dt)
 
 void Object::Draw(RenderWindow& window)
 {
-	if ( isDevMod )
+	if ( FRAMEWORK->devMode )
 	{
 		window.draw(hitbox);
 	}

@@ -27,6 +27,8 @@ public:
 
 	bool Init(int width, int height, std::string title);
 	bool Do();
+
+	bool devMode;
 };
 
 #define FRAMEWORK (Framework::GetInstance())
