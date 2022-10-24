@@ -32,12 +32,18 @@ public:
 	static Vector2f RandomInCirclePoint();
 	static Vector2f RandomOutCirclePoint();
 
+	// Vector2f
 	static float SqrMagnitude(const Vector2f& vec);
 	static float Magnitude(const Vector2f& vec);
 	static Vector2f Normalize(const Vector2f& vec);
 	static float Distance(const Vector2f& vec1, const Vector2f& vec2);
 	static float Dot(const Vector2f& a, const Vector2f& b);
 	static Vector2f GetNormal(const Vector2f& vec);
+
+	// Vector2i
+	static float SqrMagnitude(const Vector2i& vec);
+	static float Magnitude(const Vector2i& vec);
+	static float Distance(const Vector2i& vec1, const Vector2i& vec2);
 
 	static float Angle(const Vector2f& start, const Vector2f& end);
 	static float Angle(const Vector2f& dir);

@@ -104,6 +104,21 @@ Vector2f Utils::GetNormal(const Vector2f& vec)
 	return Vector2f(-vec.y, vec.x);
 }
 
+float Utils::SqrMagnitude(const Vector2i& vec)
+{
+	return vec.x * vec.x + vec.y * vec.y;
+}
+
+float Utils::Magnitude(const Vector2i& vec)
+{
+	return sqrt(vec.x * vec.x + vec.y * vec.y);
+}
+
+float Utils::Distance(const Vector2i& vec1, const Vector2i& vec2)
+{
+	return Magnitude(vec1 - vec2);
+}
+
 float Utils::Angle(const Vector2f& start, const Vector2f& end)
 {
 	return Angle(Normalize(end - start));

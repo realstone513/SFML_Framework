@@ -1,12 +1,12 @@
 #include "Object.h"
 #include "../Framework/Framework.h"
 
-int Object::objCount = 0;
+int Object::objCount = 1;
 
 Object::Object()
 	: enabled(true)
 {
-	id = ++objCount;
+	id = objCount++;
 	Init();
 }
 
