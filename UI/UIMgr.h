@@ -5,7 +5,7 @@
 class Scene;
 
 //È®ÀÎ¿ë
-class UIMgr :public Object
+class UIMgr : public Object
 {
 protected:
 	list<Object*> uiObjList;

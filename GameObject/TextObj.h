@@ -7,9 +7,10 @@ protected:
     Text text;
 
 public:
+    TextObj() {}
     TextObj(Font& font,
         string textString,
-        float sizeX = 0, float sizeY = 0,
+        float posX = 0, float posY = 0,
         Color textColor = Color::White,
         int textSize = 75);
     virtual ~TextObj() override;
@@ -25,4 +26,5 @@ public:
     FloatRect GetGlobalBounds();
     void SetColor(Color color);
     void SetPos(const Vector2f& pos);
+    Text GetTextObj() { return text; }
 };

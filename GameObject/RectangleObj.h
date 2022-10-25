@@ -16,6 +16,7 @@ public:
 	void SetOrigin(Origins origin);
 	void SetScale(float x, float y);
 	void SetFillColor(Color color);
+	void SetSize(float x, float y);
 
 	void SetTextureRect(const IntRect& rect);
 	const IntRect& GetTextureRect() const;
@@ -24,4 +25,6 @@ public:
 	FloatRect GetGlobalBounds() const;
 
 	void SetPos(const Vector2f& pos) override;
+
+	RectangleShape& GetShape();
 };

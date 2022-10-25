@@ -29,6 +29,11 @@ void SpriteObj::SetScale(float x, float y)
 	sprite.setScale(x, y);
 }
 
+void SpriteObj::SetColor(Color color)
+{
+	sprite.setColor(color);
+}
+
 void SpriteObj::SetTextureRect(const IntRect& rect)
 {
 	sprite.setTextureRect(rect);

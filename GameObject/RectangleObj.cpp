@@ -34,6 +34,11 @@ void RectangleObj::SetFillColor(Color color)
 	shape.setFillColor(color);
 }
 
+void RectangleObj::SetSize(float x, float y)
+{
+	shape.setSize(Vector2f(x, y));
+}
+
 void RectangleObj::SetTextureRect(const IntRect& rect)
 {
 	shape.setTextureRect(rect);
@@ -60,4 +65,9 @@ void RectangleObj::SetPos(const Vector2f& pos)
 {
 	Object::SetPos(pos);
 	shape.setPosition(position);
+}
+
+RectangleShape& RectangleObj::GetShape()
+{
+	return shape;
 }

@@ -1,7 +1,7 @@
 #include "UIMgr.h"
 
 UIMgr::UIMgr(Scene* scene)
-    :parentScene(scene)
+    : parentScene(scene)
 {
 }
 
