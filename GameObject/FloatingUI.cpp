@@ -5,14 +5,6 @@ FloatingUI::FloatingUI()
 {
 }
 
-FloatingUI::~FloatingUI()
-{
-}
-
-void FloatingUI::Init()
-{
-}
-
 void FloatingUI::Release()
 {
 	TextObj::Release();
