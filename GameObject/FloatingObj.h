@@ -1,16 +1,22 @@
 #pragma once
 #include "TextObj.h"
 
-class FloatingUI : public TextObj
+class FloatingObj : public TextObj
 {
 protected:
 	Vector2f dir;
 	float speed;
 	float range;
+	float dist;
 
 public:
-	FloatingUI();
-	virtual ~FloatingUI() {}
+	FloatingObj();
+	FloatingObj(Font& font,
+		string textString,
+		float posX = 0, float posY = 0,
+		Color textColor = Color::White,
+		int textSize = 75);
+	virtual ~FloatingObj() {}
 
 	virtual void Release() override;
 	virtual void Reset() override;
@@ -20,6 +26,6 @@ public:
 
 	void Fire(const Vector2f pos,
 		const Vector2f dir = { 0, -1 },
-		float speed = 20.f,
-		float range = 50.f);
+		float speed = 30.f,
+		float range = 30.f);
 };

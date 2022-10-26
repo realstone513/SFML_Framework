@@ -14,7 +14,7 @@ protected:
 	string type;
 	bool enabled;
 
-	Vector2f  position;
+	Vector2f position;
 	float rotation;
 	Vector2f scale;
 

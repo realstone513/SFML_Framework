@@ -17,8 +17,6 @@ public:
 
     virtual void Draw(RenderWindow& window) override;
 
-    virtual void Translate(Vector2f delta) override;
-
     void SetOrigin(Origins origin);
     void SetString(string string);
     const string& GetString() const;
@@ -26,5 +24,4 @@ public:
     FloatRect GetGlobalBounds();
     void SetColor(Color color);
     void SetPos(const Vector2f& pos);
-    Text GetTextObj() { return text; }
 };

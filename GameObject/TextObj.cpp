@@ -20,12 +20,6 @@ void TextObj::Draw(RenderWindow& window)
     window.draw(text);
 }
 
-void TextObj::Translate(Vector2f delta)
-{
-    position.x += delta.x;
-    position.y += delta.y;
-}
-
 void TextObj::SetOrigin(Origins origin)
 {
     Utils::SetOrigin(text, origin);
@@ -53,5 +47,6 @@ void TextObj::SetColor(Color color)
 
 void TextObj::SetPos(const Vector2f& pos)
 {
+    Object::SetPos(pos);
     text.setPosition(pos);
 }
