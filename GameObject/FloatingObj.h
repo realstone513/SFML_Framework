@@ -26,6 +26,6 @@ public:
 
 	void Fire(const Vector2f pos,
 		const Vector2f dir = { 0, -1 },
-		float speed = 30.f,
-		float range = 30.f);
+		float speed = 50.f,
+		float range = 50.f);
 };

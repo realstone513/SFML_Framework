@@ -13,6 +13,11 @@ public:
         float posX = 0, float posY = 0,
         Color textColor = Color::White,
         int textSize = 75);
+    TextObj(Font& font,
+        wstring textString,
+        float posX = 0, float posY = 0,
+        Color textColor = Color::White,
+        int textSize = 75);
     virtual ~TextObj() override;
 
     virtual void Draw(RenderWindow& window) override;

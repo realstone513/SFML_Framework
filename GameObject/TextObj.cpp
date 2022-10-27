@@ -11,6 +11,17 @@ TextObj::TextObj(Font& font, string textString,
     text.setCharacterSize(textSize);
 }
 
+TextObj::TextObj(Font& font,  wstring textString,
+    float posX, float posY, Color textColor, int textSize)
+{
+    text.setFont(font);
+    text.setString(textString);
+    text.setPosition(posX, posY);
+    position = { posX, posY };
+    text.setFillColor(textColor);
+    text.setCharacterSize(textSize);
+}
+
 TextObj::~TextObj()
 {
 }
