@@ -50,4 +50,6 @@ public:
 	static bool OBB(const RectangleShape& obb1, const RectangleShape& obb2);
 
 	static bool EqualFloat(float a, float b);
+
+	static int ManhattanDistance(Vector2i vec1, Vector2i vec2);
 };

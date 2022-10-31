@@ -139,3 +139,8 @@ bool Utils::EqualFloat(float a, float b)
 {
 	return fabs(a - b) < numeric_limits<float>::epsilon();
 }
+
+int Utils::ManhattanDistance(Vector2i vec1, Vector2i vec2)
+{
+	return abs(vec1.x - vec2.x) + abs(vec1.y - vec2.y);
+}
