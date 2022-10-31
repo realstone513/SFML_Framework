@@ -41,6 +41,11 @@ void TextObj::SetString(string string)
     text.setString(string);
 }
 
+void TextObj::SetString(wstring wstring)
+{
+    text.setString(wstring);
+}
+
 const string& TextObj::GetString() const
 {
     return text.getString();

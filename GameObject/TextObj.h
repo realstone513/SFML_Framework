@@ -24,6 +24,7 @@ public:
 
     void SetOrigin(Origins origin);
     void SetString(string string);
+    void SetString(wstring wstring);
     const string& GetString() const;
 
     FloatRect GetGlobalBounds();
