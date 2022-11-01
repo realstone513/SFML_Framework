@@ -1,4 +1,6 @@
 #include "SceneMgr.h"
+#include "../../Scenes/TitleScene.h"
+#include "../../Scenes/EquipmentScene.h"
 #include "../../Scenes/BattleScene.h"
 //#include "SceneDev1.h"
 //#include "SceneDev2.h"
@@ -17,12 +19,14 @@ bool SceneMgr::Init()
 {
 	/*sceneMap[Scenes::Dev1] = new SceneDev1();
 	sceneMap[Scenes::Dev2] = new SceneDev2();*/
+	sceneMap[Scenes::Title] = new TitleScene();
+	sceneMap[Scenes::Equipment] = new EquipmentScene();
 	sceneMap[Scenes::Battle] = new BattleScene();
 
 	for (auto i : sceneMap)
 		i.second->Init();
 
-	currScene = Scenes::Battle;
+	currScene = Scenes::Title;
 	sceneMap[currScene]->Enter();
 	return false;
 }

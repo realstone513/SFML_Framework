@@ -37,7 +37,8 @@ void Scene::Draw(RenderWindow& window)
 {
 	window.setView(worldView);
 
-	background->Draw(window);
+	if (background != nullptr)
+		background->Draw(window);
 
 	for ( const auto& obj : objList )
 	{

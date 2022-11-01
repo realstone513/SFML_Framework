@@ -34,9 +34,20 @@ void RectangleObj::SetFillColor(Color color)
 	shape.setFillColor(color);
 }
 
+void RectangleObj::SetOutline(Color outlColor, float outlThickness)
+{
+	shape.setOutlineColor(outlColor);
+	shape.setOutlineThickness(outlThickness);
+}
+
 void RectangleObj::SetSize(float x, float y)
 {
 	shape.setSize(Vector2f(x, y));
+}
+
+void RectangleObj::SetRotate(float rotate)
+{
+	shape.setRotation(rotate);
 }
 
 void RectangleObj::SetTextureRect(const IntRect& rect)

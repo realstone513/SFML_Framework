@@ -16,7 +16,9 @@ public:
 	void SetOrigin(Origins origin);
 	void SetScale(float x, float y);
 	void SetFillColor(Color color);
+	void SetOutline(Color outlColor, float outlThickness);
 	void SetSize(float x, float y);
+	void SetRotate(float rotate);
 
 	void SetTextureRect(const IntRect& rect);
 	const IntRect& GetTextureRect() const;

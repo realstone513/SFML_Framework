@@ -13,7 +13,9 @@ class UIMgr;
 
 enum class Scenes
 {
-	Battle
+	Title,
+	Equipment,
+	Battle,
 	/*Dev1,
 	Dev2,*/
 };
