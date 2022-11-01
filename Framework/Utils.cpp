@@ -44,7 +44,7 @@ float Utils::Clamp(float v, float min, float max)
 
 int Utils::RandomRange(int min, int maxInclude)
 {
-	return (gen() % (maxInclude - min)) + min + 1;
+	return (gen() % (maxInclude - min + 1)) + min;
 }
 
 float Utils::RandomRange(float min, float maxInclude)
