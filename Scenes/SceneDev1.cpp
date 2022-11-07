@@ -4,7 +4,7 @@
 SceneDev1::SceneDev1()
 	: Scene(Scenes::Dev1)
 {
-	LOG::Print3String("scene1 create");
+	CLOG::Print3String("scene1 create");
 }
 
 SceneDev1::~SceneDev1()
@@ -13,7 +13,7 @@ SceneDev1::~SceneDev1()
 
 void SceneDev1::Init()
 {
-	LOG::Print3String("scene1 init");
+	CLOG::Print3String("scene1 init");
 
 	for (auto obj : objList)
 	{
@@ -27,12 +27,12 @@ void SceneDev1::Release()
 
 void SceneDev1::Enter()
 {
-	LOG::Print3String("scene1 enter");
+	CLOG::Print3String("scene1 enter");
 }
 
 void SceneDev1::Exit()
 {
-	LOG::Print3String("scene1 exit");
+	CLOG::Print3String("scene1 exit");
 }
 
 void SceneDev1::Update(float dt)
@@ -44,7 +44,7 @@ void SceneDev1::Update(float dt)
 	}
 	if (InputMgr::GetKeyDown(Keyboard::Key::F1))
 	{
-		LOG::Print3String("scene1");
+		CLOG::Print3String("scene1");
 		return;
 	}
 	if (InputMgr::GetKeyDown(Keyboard::Key::Escape))
